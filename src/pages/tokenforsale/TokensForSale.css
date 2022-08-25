@@ -1,0 +1,25 @@
+.tokensforsale{
+    color: white;
+    text-align: center;
+    padding: 10px 0px 20px 0px;
+    border-bottom: 1px solid ;
+    width: fit-content;
+    margin: 10px auto;
+}
+.tokensforsale span{
+    background: var(--secondaryColor);
+    margin: 0px 10px 0px 10px;
+    padding: 10px;
+}
+.userIcon{
+    font-size: x-large;
+    margin-right: 10px;
+}
+.buytokensbtn{
+    background-color: var(--btnColor);
+    border: none;
+    color: white;
+    margin-left: 10px;
+    padding: 8px;
+    border-radius: 20px;
+}

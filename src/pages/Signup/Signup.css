@@ -1,0 +1,45 @@
+.signup-form{
+    background-color: #182b3c;
+    box-shadow: 10px 3px 38px 0px rgba(0,0,0,0.3);
+    width:500px;
+    margin:43px auto;
+    border-radius:5px;
+    padding:20px 40px;
+    text-align: center;
+}
+.signup-box form input{
+    margin-top: 20px;
+    font-size:18px;
+    width: 80%;
+    padding: 7px;
+    border: none;
+    border-radius: 2px;
+    outline: none;
+    color: white;
+}
+.submitbtn{
+    margin-top: 20px;
+    font-size: 20px;
+    width: 80%;
+    padding: 7px;
+    border: none;
+    cursor: pointer;
+    background-color: #2eac68;
+    border-radius: 2px;
+    color: #fff;
+}
+.signup-box p {
+    color: white;
+    text-align: center;
+    padding-top:20px;
+    font-size: 15px;
+}
+.para-2{
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    margin-top: -10px;
+}
+.para-2 a{
+    color: white;
+}

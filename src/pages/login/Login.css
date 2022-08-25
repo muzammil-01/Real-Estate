@@ -1,0 +1,42 @@
+
+    .form{
+      width:400px;
+      text-align: center;
+      margin:70px auto;
+      border-radius:5px;
+      padding:20px 40px;
+      background-color: #182b3c;
+      box-shadow: 10px 3px 38px 0px rgba(0,0,0,0.3);
+    }
+    .top{
+      text-align:center;
+    }
+    .inputs{
+    margin-top: 20px;
+    font-size:18px;
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border-radius: 2px;
+    background-color: #21374a;
+    outline: none;
+    }
+    .signup-text{
+      text-align:center;
+    }
+    .signupbtn{
+      color:#109272;
+      text-decoration:none;
+      font-size:18px;
+    }
+    .logbtn{
+        padding: 5px 0px;
+        margin-top: 20px;
+        width: 50%;
+        cursor: pointer;
+        border: none;
+        background-color: #2eac68;
+        font-size: 20px;
+        border-radius: 2px;
+        color: #fff;
+    }

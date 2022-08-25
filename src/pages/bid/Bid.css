@@ -1,0 +1,111 @@
+.bid {
+  color: white;
+  display: grid;
+  grid-template-columns: 2rem 20rem 45rem 2rem;
+  grid-gap: 30px;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 0px 50px 0px ;
+}
+.highest-bidder-card {
+  width: 100%;
+  grid-column: 2/3;
+  text-align: center;
+  background-color: var(--secondaryColor);
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 10px 3px 38px 0px rgba(0, 0, 0, 0.3);
+}
+#bid-date1{
+  display: none;
+}
+.highest-bidder-card h5{
+    color: var(--btnColor);
+}
+.user{
+    font-size: 80px;
+    margin: 10px 0px 10px 0px;
+}
+.bidding-price {
+  background: var(--btnColor);
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 6px;
+}
+.bidding-date {
+  color: white;
+  width: fit-content;
+  margin: 10px auto;
+  text-align: center;
+  border-radius: 20px;
+  background-color: var(--secondaryColor);
+  box-shadow: 10px 3px 38px 0px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+}
+.bidding-form {
+  background-color: var(--secondaryColor);
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 10px 3px 38px 0px rgba(0, 0, 0, 0.3);
+  display: grid;
+  grid-template-columns:  20rem 25rem ;
+}
+.house-image {
+  grid-column: 1/2;
+}
+.house-image img{
+    max-width: 100%;
+    height: 100%;
+}
+.form-fields {
+  grid-column: 2/3;
+  text-align: center;
+}
+.form-fields input {
+  padding: 5px;
+  background: var(--primaryColor);
+  border: none;
+  outline: none;
+  color: white;
+  width: 80%;
+}
+.bidding-form-complete{
+    grid-column: 3/4;
+}
+.form-fields button{
+    background-color: var(--btnColor);
+    border: none;
+    outline: none;
+    color: white;
+    margin: 30px 10px 0px 10px;
+    padding: 7px;
+    border-radius: 6px;
+}
+
+@media screen and (max-width:1200px){
+  .bid, .bidding-form{
+    display: block;
+  }
+  #bid-date1{
+    display:block;
+  }
+  #bid-date2{
+    display: none;
+  }
+  .highest-bidder-card{
+    width: 80%;
+    margin: 15px auto;
+  }
+  .house-image img{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .bidding-form-complete{
+    width: 80%;
+    margin: 0 auto;
+  }
+  .form-fields input{
+width: 100%;
+  }
+}

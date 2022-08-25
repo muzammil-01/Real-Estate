@@ -1,0 +1,84 @@
+.banner{
+  padding: 30px;
+}
+.banner-content {
+  margin-top: 30px;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 10fr 10fr 1fr;
+  align-items: center;
+}
+.text{
+grid-column: 2/3;
+animation-name: moveInLeft;
+animation-duration: 2s;
+}
+.pic{
+grid-column: 3/4;
+animation-name: moveInRight;
+animation-duration: 2s;
+
+}
+.text h1 {
+  margin-bottom: 25px;
+  font-size: 40px;
+  font-weight: bolder;
+  letter-spacing: 3px;
+  font-family:'Merriweather', serif;
+}
+.text p {
+  margin-bottom: 40px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-style: italic;
+  font-family:'Merriweather', serif;
+}
+.btn {
+  padding: 10px 30px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  background-color: #109272;
+  border: none;
+  font-size: 18px;
+  border-radius: 2px;
+  font-weight: 600;
+  color: #fff;
+}
+.btn:hover {
+  color: black;
+  background-color: white;
+  
+}
+
+.pic img{
+width: 100%;
+margin-left: 80px;
+}
+@media only screen and (max-width: 900px) {
+  .banner-content{
+    display: block;
+  }
+  .text{
+    text-align: center;
+  }
+  .pic img{
+    margin: 0;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 890px) {
+  .banner {
+    height: 100%;
+  }
+}
+@media only screen and (max-width: 615px) {
+  .banner {
+    height: 100%;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .banner {
+    height: 100%;
+  }
+}

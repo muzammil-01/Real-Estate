@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+}
+:root {
+  --primaryColor:  #122333;
+  --secondaryColor: #182b3c;
+  --btnColor: #2eac68;
+}
+body {
+  background-color: var(--primaryColor); ;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes moveInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+.error {
+  color: white;
+  text-align: center;
+  font-size: larger;
+  margin: 15px auto;
+  width: 80%;
+  background-color: red;
+  /* background: var(--primaryColor); */
+  /* border: 1px solid var(--secondaryColor); */
+  padding: 5px;
+  /* box-shadow: 10px 3px 38px 0px rgba(0,0,0,0.3); */
+}

@@ -1,0 +1,67 @@
+
+.about h1{
+    color: var(--btnColor);
+    text-align: center;
+    font-weight: 900;
+    margin-bottom: 30px;
+    font-family:'Merriweather', serif;
+}
+.carded{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 25px;
+    padding: 30px;
+}
+.card1{
+    box-shadow: 10px 3px 38px 0px rgba(0,0,0,0.3);
+    text-align: center;
+    background-color: var(--secondaryColor);
+    border-radius: 10px;
+   color: white;
+}
+.card2{
+    box-shadow: 10px 3px 38px 0px rgba(0,0,0,0.3);
+    background-color: var(--secondaryColor);
+    text-align: center;
+    border-radius: 10px;
+   color: white;
+}
+.card3{
+    box-shadow: 10px 3px 38px 0px rgba(0,0,0,0.3);
+    background-color: var(--secondaryColor);
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+}
+.card1 > h2, .card2 > h2, .card3 > h2{
+    margin: 20px 20px;
+}
+.card1 > p, .card2 > p, .card3 > p{
+    margin: 15px;
+}
+.card1 > button, .card2 > button, .card3 > button{
+    padding: 10px 30px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    background-color: var(--btnColor);
+    color: #fff;
+}
+.tokenization{
+    padding: 50px;
+    margin: 50px;
+    background-color:var(--secondaryColor);
+    box-shadow: 10px 3px 38px 0px rgba(0,0,0,0.3);
+    border-radius: 20px;
+}
+.tokenization > p {
+    text-align: center;
+    color: white;
+}
+.tokenization > h2{
+    text-align: center;
+    color: white;
+}
