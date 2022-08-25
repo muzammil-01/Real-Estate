@@ -9,7 +9,6 @@ import map from '../../assets/map.jpg'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Slider from '../../components/slider/Slider'
-import Mint from '../../components/Mint/Mint'
 import MintModel from '../../components/mintModel/MintModel'
 
 
@@ -27,15 +26,13 @@ function PropertyDetails() {
     return (
         <>
             <Navbar />
-            {/* <Slider/> */}
+            {property && <Slider propertyImages={property[0].propertyId.propertyImages}/>}
             {property && openModal && <MintModel setOpenModal={setOpenModal} property={property} />}
 
-            <button className='logbtn' onClick={() => {
+            <p className='mintbtn' onClick={() => {
                 setOpenModal(true);
-            }}>Mint</button>
+            }}>Mint</p>
 
-
-            {/* <Mint id={id}/> */}
             <CenterNavbar id={id} />
 
             <div className="about-map">

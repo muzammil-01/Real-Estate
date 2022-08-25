@@ -17,6 +17,7 @@ function Home() {
 
   }, [])
   return (
+    <>
     <div>
       {loading ? 
       <Spinner/>
@@ -29,6 +30,7 @@ function Home() {
       </div>
     }
     </div>
+    </>
   )
 }
 

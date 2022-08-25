@@ -19,6 +19,7 @@ const Marketplace = () => {
     
     const listAll = useSelector(state => state.listAll)
     const { loading, error, propertyData } = listAll
+    console.log(propertyData)
     return (
         <>
 

@@ -18,10 +18,10 @@ function Propertycard({ property }) {
                             <div className='total-price'>
                                 <p>
                                     <span style={{ fontSize: "20px",color: "#109272",  fontWeight:"bold", textTransform:"uppercase"}}>
-                                        {property.propertyName}
+                                        Property price
                                     </span>
                                     <br />
-                                    $ 714,402
+                                    {property.propertyPrice} $
                                     <br />
                                     <span style={{ color: "#109272",  fontWeight:"bold",fontSize: "20px" }}>
                                         TOTAL TOKENS

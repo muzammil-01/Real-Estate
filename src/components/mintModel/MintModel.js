@@ -1,13 +1,9 @@
 import './MintModel.css'
 import React, { useState,useEffect } from 'react'
-import axios from 'axios'
 import { ethers } from "ethers";
 import { ERC721ABI } from "../../Redux/constants/erc721ABI";
 
 function MintModel({ setOpenModal , property}) {
-  if(property){
-    console.log(property[0])
-  }
   const [count, setCount] = useState(0)
 
 
@@ -33,7 +29,6 @@ erc721.on("Mint", (owner, quantity) => {
 if(quantity === count){console.log("I am Owner",owner)
 console.log("I am Quantity",quantity.toNumber())}
 })
-console.log(count)
 }
 }
 catch (error) {
@@ -61,18 +56,21 @@ console.log(count)
             <p>Enter No of tokens you want to buy and price of 1 token</p>
           </div>
           <div className="mintModalbody">
-            <p>TOKEN STOCK : {property[0].TotalSupplies} </p>
+            <p><b>TOKEN STOCK </b>: {property[0].TotalSupplies} </p>
             <p>
+              {count === 0 && <button 
+              disabled
+              style={{cursor:"not-allowed"}}
+              className='decreaseBtn' onClick={() => setCount(count - 1)}>-</button>}
               {count !== 0 && <button className='decreaseBtn' onClick={() => setCount(count - 1)}>-</button>}
-              <span> {count} </span>
+              <span className='tokenValue'> {count} </span>
               <button className='increaseBtn' onClick={() => setCount(count + 1)}>+</button>
             </p>
           </div>
           <div className="mintModalfooter">
             <button
               id="mintModalcalculateBtn"
-              onClick={Mint}
-            >
+              onClick={Mint}>
               Mint
             </button>
           </div>

@@ -5,9 +5,11 @@
     color: black;
     font-size: x-large;
     border-radius: 20px;
-    background-color: lightgray;
+    background-color: gray;
     width: 50px; 
-
+}
+.tokenValue{
+  margin: 0px 20px 0px 20px;
 }
 .mintModalBackground {
     position: fixed;
@@ -69,18 +71,14 @@
     align-items: center;
   }
   
-  .mintModalContainer .mintModalfooter button {
+  #mintModalcalculateBtn {
+    background-color: crimson;
+    color: white;
+    border-radius:30px ;
+    font-size: 20px;
+    cursor: pointer;
     width: 150px;
     height: 45px;
     margin: 10px;
     border: none;
-    background-color: cornflowerblue;
-    color: white;
-    border-radius: 8px;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  #mintModalcalculateBtn {
-    background-color: crimson;
   }

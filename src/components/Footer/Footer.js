@@ -34,7 +34,7 @@ const Footer = () => {
   <div className="container">
     <div className="row">
       <div className="col-md-8 col-sm-6 col-xs-12">
-        <p className="copyright-text">Copyright © 2017 All Rights Reserved by  <a href="#">FypLand</a>.
+        <p className="copyright-text">Copyright © 2022 All Rights Reserved by  <a href="#">FypLand</a>.
         </p>
       </div>
       <div className="col-md-4 col-sm-6 col-xs-12">

@@ -8,7 +8,10 @@ function Details() {
 
   const propertyDetails = useSelector(state => state.propertyDetails)
   const { loading, error, property } = propertyDetails
-  console.log(property)
+  if(property){
+
+    console.log(property)
+  }
 
   
 
@@ -22,43 +25,56 @@ function Details() {
         <div className="property-details">
           <h2>
             <h5> Owner name</h5>
-            <span className='gapleft'>{property.ownerName}</span>
+            <span className='gapleft'>{property[0].propertyId.ownerName}</span>
           </h2>
           <h2>
             <h5> Property Contract Address</h5>
-            <span className='gapleft'>{property.cloneAddress}</span>
+            <span className='gapleft'>{property[0].propertyId.PropertyContractAddress}</span>
           </h2>
           <h2>
             <h5> Property Contract Owner </h5>
-            <span className='gapleft'>{property.cloneOwner}</span>
+            <span className='gapleft'>{property[0].propertyId.OwnerWalletAddress}</span>
           </h2>
           <h2>
             <h5>Area</h5>
-            <span className='gapleft'>  {property.size}</span>
+            <span className='gapleft'>  
+            {property[0].propertyId.size} sqft</span>
           </h2>
           <h2>
             <h5>Bedrooms</h5>
-            <span className='gapleft'>  {property.beds}</span>
+            <span className='gapleft'>  
+            {property[0].propertyId.beds}
+            </span>
           </h2>
           <h2>
             <h5>Bathrooms</h5>
-            <span className='gapleft'> {property.baths} </span>
+            <span className='gapleft'> 
+            {property[0].propertyId.baths} 
+            </span>
           </h2>
           <h2>
             <h5>Country</h5>
-            <span className='gapleft'>   {property.country}</span>
+            <span className='gapleft'>   
+            {property[0].propertyId.country}
+            </span>
           </h2>
           <h2>
             <h5>City</h5>
-            <span className='gapleft'>{property.city}</span>
+            <span className='gapleft'>
+              {property[0].propertyId.city}
+              </span>
           </h2>
           <h2>
             <h5>Address</h5>
-            <span className='gapleft'>{property.propertyAddress} {property.propertyLocation}</span>
+            <span className='gapleft'>
+              {property[0].propertyId.propertyAddress}
+              </span>
           </h2>
           <h2>
             <h5>Postal code</h5>
-            <span className='gapleft'> {property.postalcode}</span>
+            <span className='gapleft'> 
+            {property[0].propertyId.postalcode}
+            </span>
           </h2>
           <h2>
             <h5>Type</h5>

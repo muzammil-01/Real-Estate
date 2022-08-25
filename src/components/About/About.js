@@ -25,8 +25,8 @@ function About() {
                     <button>Explore</button>
                 </div>
                 <div className="card2">
-                    <h2>Example TEXT</h2>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt possimus ad placeat assumenda nemo sit optio laboriosam accusamus, rem ratione. Exercitationem voluptas vitae vel non, laboriosam eius tenetur reiciendis explicabo.</p>
+                    <h2>Unique Tokens</h2>
+                    <p>Ownership of each property is distributed across a finite number of representative tokens. Based on token share, owners can collect revenue from rent, and vote on property <br/>decisions.</p>
                     <button>Explore</button>
                 </div>
                 <div className="card3">

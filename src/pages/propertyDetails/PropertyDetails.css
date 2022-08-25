@@ -51,6 +51,21 @@
     color: white;
     text-align: center;
 }
+.mintbtn{
+    background-color: var(--btnColor);
+    outline: none;
+    border: none;
+    display: flex;
+    width: 33%;
+    margin: 30px auto;
+    justify-content: center;
+    cursor: pointer;
+    padding: 8px;
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+    border-radius: 20px;
+}
 @media screen and (max-width:1200px){
     .about-map{
         display: block;
