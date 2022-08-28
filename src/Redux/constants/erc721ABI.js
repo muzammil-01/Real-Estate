@@ -233,7 +233,7 @@ export const ERC721ABI = [
         "type": "uint256"
       }
     ],
-    "name": "CancelFunction",
+    "name": "CancelListings",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -324,6 +324,19 @@ export const ERC721ABI = [
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "balanceof",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -345,6 +358,19 @@ export const ERC721ABI = [
   {
     "inputs": [],
     "name": "getPricePerToken",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getTotalMinted",
     "outputs": [
       {
         "internalType": "uint256",
@@ -472,6 +498,40 @@ export const ERC721ABI = [
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes",
+        "name": "",
+        "type": "bytes"
+      }
+    ],
+    "name": "onERC721Received",
+    "outputs": [
+      {
+        "internalType": "bytes4",
+        "name": "",
+        "type": "bytes4"
+      }
+    ],
+    "stateMutability": "pure",
     "type": "function"
   },
   {
@@ -694,6 +754,24 @@ export const ERC721ABI = [
   },
   {
     "inputs": [],
+    "name": "totalListedForSale",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "totalSupplies",
     "outputs": [
       {
@@ -775,118 +853,118 @@ export const ERC721ABI = [
 
 export const ERC72FACTORYABI = [
   {
-    inputs: [],
-    stateMutability: "nonpayable",
-    type: "constructor",
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
   },
   {
-    anonymous: false,
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        indexed: true,
-        internalType: "address",
-        name: "from",
-        type: "address",
+        "indexed": true,
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
       },
       {
-        indexed: true,
-        internalType: "address",
-        name: "cloneAdd",
-        type: "address",
-      },
+        "indexed": true,
+        "internalType": "address",
+        "name": "cloneAdd",
+        "type": "address"
+      }
     ],
-    name: "CloneCreatedAt",
-    type: "event",
+    "name": "CloneCreatedAt",
+    "type": "event"
   },
   {
-    inputs: [
+    "inputs": [
       {
-        internalType: "address",
-        name: "",
-        type: "address",
+        "internalType": "address",
+        "name": "",
+        "type": "address"
       },
       {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
     ],
-    name: "ShareHolders",
-    outputs: [
+    "name": "ShareHolders",
+    "outputs": [
       {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
     ],
-    stateMutability: "view",
-    type: "function",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    inputs: [],
-    name: "clone",
-    outputs: [
+    "inputs": [],
+    "name": "clone",
+    "outputs": [
       {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
     ],
-    stateMutability: "view",
-    type: "function",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    inputs: [
+    "inputs": [
       {
-        internalType: "string",
-        name: "_propertyAddress",
-        type: "string",
+        "internalType": "string",
+        "name": "_propertyAddress",
+        "type": "string"
       },
       {
-        internalType: "string",
-        name: "_ownerName",
-        type: "string",
+        "internalType": "string",
+        "name": "_ownerName",
+        "type": "string"
       },
       {
-        internalType: "uint256",
-        name: "_totalSupply",
-        type: "uint256",
+        "internalType": "uint256",
+        "name": "_totalSupply",
+        "type": "uint256"
       },
       {
-        internalType: "uint256",
-        name: "_pricePerToken",
-        type: "uint256",
+        "internalType": "uint256",
+        "name": "_pricePerToken",
+        "type": "uint256"
       },
       {
-        internalType: "uint256",
-        name: "_tokensPerWallet",
-        type: "uint256",
-      },
+        "internalType": "uint256",
+        "name": "_tokensPerWallet",
+        "type": "uint256"
+      }
     ],
-    name: "cloneContract",
-    outputs: [
+    "name": "cloneContract",
+    "outputs": [
       {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
     ],
-    stateMutability: "nonpayable",
-    type: "function",
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    inputs: [],
-    name: "implementation",
-    outputs: [
+    "inputs": [],
+    "name": "implementation",
+    "outputs": [
       {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
     ],
-    stateMutability: "view",
-    type: "function",
-  },
+    "stateMutability": "view",
+    "type": "function"
+  }
 ];
 export const ERC72FACTORYContractAddress =
-  "0x85168601a76EfC3A241558EAD81a654aA39F46E2";
+"0x85168601a76EfC3A241558EAD81a654aA39F46E2";

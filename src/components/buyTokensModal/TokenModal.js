@@ -1,10 +1,41 @@
 import React , {useState} from 'react'
 import './TokenModal.css'
+import { ethers } from "ethers";
+import { ERC721ABI } from "../../Redux/constants/erc721ABI";
+import BN from "bn.js";
 
 export default function TokenModal({setOpenModal}) {
     const [calculate, setCalculate] = useState(0)
     const [selectTokens, setSelectTokens] = useState(0)
-    const [tokenPrice, setTokenPrice] = useState(0)
+	const [tokenPrice, setTokenPrice] = useState(0)
+	
+	// const TransferTokens = async () => { 
+	// 	try {
+	// 		const accounts = await window.ethereum.request({
+	// 			method: "eth_requestAccounts",
+	// 		  });
+	// 		  const address = accounts[0];
+	// 		  let provider = new ethers.providers.Web3Provider(window.ethereum);
+	// 		  let signer = provider.getSigner();
+	// 		  const erc721 = new ethers.Contract(
+	// 			property[0].SellerWalletAddress,
+	// 			ERC721ABI,
+	// 			signer
+	// 		  );
+	// 		let tx = erc721.transfer(from, to, quantity, { value: value, gasLimit: 5000000 })
+	// 		erc721.on("TransferToken", (from, to, quantity, priceperToken) => {
+				
+	// 		})
+			
+	// 	} catch (error) {
+			
+	// 	}
+	// }
+
+
+
+
+
   return (
         <div className="modalBackground">
           <div className="modalContainer">

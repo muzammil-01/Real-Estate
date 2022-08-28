@@ -66,7 +66,6 @@ router.post('/check',fetchuser,Arrayupload, async (req, res) => {
     
             
            })
-        console.log({addProperty})
 
         res.json({ addProperty })
     } catch (error) {
@@ -77,7 +76,6 @@ router.post('/check',fetchuser,Arrayupload, async (req, res) => {
  router.post("/checkToken",fetchuser,async (req,res)=>{
     
         try {
-            console.log("hello",req.body)
             listing = await ListingTokens.create({
                 user:req.user.id,
                 propertyId: mongoose.Types.ObjectId(req.body.propertyId),
@@ -86,12 +84,26 @@ router.post('/check',fetchuser,Arrayupload, async (req, res) => {
                 PricePerToken:req.body.Pricepertoken,
                 NumberOfTokenPerWallet:req.body.numberOfTokenPerWallet,
                })
-               console.log({listing})
                res.json({listing})
         } catch (error) {
                 console.log(error)   
         }
  })
+
+ router.patch("/update/:id", async (req, res)=>{
+    try {
+        const id = req.params.id;
+        const updates = req.body;
+        const options = {new: true};
+
+        const result = await ListingTokens.findByIdAndUpdate(id, updates, options);
+
+        res.send(result)
+    } catch (error) {
+        console.log(error.message)
+    }
+ })
+
 // fetch all user specific properties GET /api/property/userproperties
 router.get("/userproperties", fetchuser, async(req,res)=>{
     try {
@@ -111,9 +123,6 @@ router.get("/:id", async(req, res)=>{
         return res.json(listing)
     }catch(e){
         return res.status(404).json('Product not found')
-    }
-    
-    
-    
+    } 
 })
 module.exports = router

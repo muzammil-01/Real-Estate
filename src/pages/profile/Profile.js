@@ -46,7 +46,7 @@ function Profile() {
             </div>
 
             {loading && <Spinner />}
-            <div className="user-properties">
+            <div>
                 {userPropertyData && userPropertyData.map((property) => (
                     <ListingCard key={property._id} property={property} />
                    

@@ -19,6 +19,7 @@ app.use(express.json())
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/property', require('./routes/addproperty'))
 app.use('/api/upload',  require('./routes/uploadRoutes'))
+app.use("/api", require('./routes/buyer'))
 app.use("/search", require('./routes/searchRoute'))
 
 app.use("/public", express.static('public'))

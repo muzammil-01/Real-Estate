@@ -3,7 +3,10 @@ const { Schema } = mongoose
 
 
 const Buyer = new Schema({
-
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    },
     ListingTokens:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'listingTokens'
