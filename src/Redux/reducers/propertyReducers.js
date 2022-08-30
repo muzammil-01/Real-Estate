@@ -10,7 +10,10 @@ import {
     PROPERTY_DETAILS_FAIL,
     LIST_USER_SPECIFIC_PROPERTY_REQUEST,
     LIST_USER_SPECIFIC_PROPERTY_SUCCESS,
-    LIST_USER_SPECIFIC_PROPERTY_FAIL
+    LIST_USER_SPECIFIC_PROPERTY_FAIL,
+    SEARCH_PROPERTY_REQUEST,
+    SEARCH_PROPERTY_SUCCESS,
+    SEARCH_PROPERTY_FAIL
 } from '../constants/propertyConstants'
 
 
@@ -61,6 +64,22 @@ export const propertyDetailsReducer = (
         case PROPERTY_DETAILS_SUCCESS:
             return { loading: false, property: action.payload }
         case PROPERTY_DETAILS_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
+    }
+}
+
+
+
+export const propertySearchReducer = (
+    state = {}, action) => {
+    switch (action.type) {
+        case SEARCH_PROPERTY_REQUEST:
+            return { loading: true }
+        case SEARCH_PROPERTY_SUCCESS:
+            return { loading: false, property: action.payload }
+        case SEARCH_PROPERTY_FAIL:
             return { loading: false, error: action.payload }
         default:
             return state

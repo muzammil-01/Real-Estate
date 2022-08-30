@@ -11,6 +11,7 @@ import TokensForSale from './pages/tokenforsale/TokensForSale';
 import Financials from './pages/financials/Financials';
 import Profile from './pages/profile/Profile';
 import AddProperty from './pages/addPropertyForm/AddProperty'
+import SearchPage from './pages/searchPage/SearchPage';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="tokensforsale" element={<TokensForSale />} />
           </Route>
           <Route path="/profile" element={<Profile/>}/>
+          <Route path="/search" element={<SearchPage/>}/>
         </Routes>
       </BrowserRouter>
 

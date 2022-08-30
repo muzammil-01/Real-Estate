@@ -11,7 +11,8 @@ import {
     addPropertyReducer,
     allPropertiesReducer,
     propertyDetailsReducer,
-    userSpecificPropertiesReducer
+    userSpecificPropertiesReducer,
+    propertySearchReducer
 } from './reducers/propertyReducers'
 
 import {
@@ -26,7 +27,7 @@ const reducer = combineReducers({
     listAll: allPropertiesReducer,
     userSpecificProperties: userSpecificPropertiesReducer,
     propertyDetails: propertyDetailsReducer,
-    // clone:sellerClone,
+    search: propertySearchReducer,
     wallet:walletConnect
 })
 

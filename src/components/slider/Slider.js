@@ -7,7 +7,6 @@ export default function Slider({propertyImages}) {
 
   const [current, setCurrent] = useState(0);
     const length = propertyImages.length;
-    console.log(length)
 
     const nextSlide = () => {
       setCurrent(current === length - 1 ? 0 : current + 1);

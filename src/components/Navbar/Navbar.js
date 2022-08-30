@@ -9,6 +9,7 @@ import { logout } from '../../Redux/actions/userActions'
 import Logo from '../../assets/logo.png'
 import { useState,useEffect } from 'react'
 import {connect,get_Signer} from '../../Redux/actions/connectWalletAction'
+import { SearchProperties } from '../../Redux/actions/propertyActions'
 
 
 
@@ -17,7 +18,8 @@ const Navbar = () => {
   const dispatch = useDispatch()
   const userLogin = useSelector(state => state.userLogin)
   const { userInfo } = userLogin
-  const [product,setProduct] = useState([])
+  const [key,setKey] = useState([])
+
 
   const logoutHandler = () => {
     dispatch(logout())
@@ -28,23 +30,31 @@ const Navbar = () => {
     dispatch(connect())
   }
 
-  const handleSearch = async (e) =>{
-    let key = e.target.value
-    if(key){
-
-      let result = await fetch(`http://localhost:3001/search/${key}`);
-      result = await result.json();
-      if(result){
-        setProduct(result)
-      }
-      console.log(product)
+  const handleSearch = () => {
+    if(key)
+    {
+      dispatch(SearchProperties(key))
+      navigate('/search')
     }
-    else{
-      console.log("hello world")
-    }
-    }
+  }
+  // const handleSearch = async (e) =>{
+  //   let key = e.target.value
+  //   if(key){
 
-
+  //     let result = await fetch(`http://localhost:3001/search/${key}`);
+  //     result = await result.json();
+  //     if(result){
+  //       setProduct(result)
+  //       console.log(product)
+  //     }
+  //     if(product.length === 0) {
+  //       console.log("no matches")
+  //     }
+  //   }
+  //   else{
+  //     console.log("no product found")
+  //   }
+  //   }
 
   return (
     <div>
@@ -55,8 +65,8 @@ const Navbar = () => {
         </div>
 
           <div className="search_box">
-          <input type="search" placeholder="Search here" onChange={handleSearch}/>
-          <span className="fa fa-search"/>
+          <input type="search" placeholder="Search here" onChange={(e)=> setKey(e.target.value)}/>
+          <span className="fa fa-search" onClick={handleSearch}/>
         </div>
 
         <ol>

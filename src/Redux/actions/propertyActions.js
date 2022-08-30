@@ -7,11 +7,12 @@ import {
     LIST_PROPERTY_FAIL,
     PROPERTY_DETAILS_REQUEST,
     PROPERTY_DETAILS_SUCCESS,
-    PROPERTY_DETAILS_FAIL,
-    LIST_USER_SPECIFIC_PROPERTY_REQUEST,
-    LIST_USER_SPECIFIC_PROPERTY_SUCCESS,
-    LIST_USER_SPECIFIC_PROPERTY_FAIL
+    SEARCH_PROPERTY_FAIL,
+    SEARCH_PROPERTY_SUCCESS,
+    SEARCH_PROPERTY_REQUEST,
 } from '../constants/propertyConstants'
+
+
 
 import axios from 'axios'
 
@@ -56,16 +57,11 @@ export const addProperty = (formData,Pricepertoken,CloneOwner,numberOfSupplies,n
       headers: {
         'Content-Type': 'application/json',
         "auth-token":token
-
       }
     }
-
      const  data1  = await axios.post('http://localhost:3001/api/property/checkToken', testData,newconfig)
 
       let listingData = data1.data.listing
-
-
-
     dispatch({
       type: ADD_PROPERTY_SUCCESS,
       payload: data, listingData
@@ -115,7 +111,6 @@ export const listPropertyDetails = (id) => async (dispatch) => {
       })
 
     const { data } = await axios.get(`http://localhost:3001/api/property/${id}`)
-    console.log(data)
 
     const data1 = 
 
@@ -134,3 +129,26 @@ export const listPropertyDetails = (id) => async (dispatch) => {
   }
 }
 
+// Search properties 
+export const SearchProperties = (key) => async (dispatch) => {
+  try {
+    dispatch({
+       type: SEARCH_PROPERTY_REQUEST 
+      })
+
+    const { data } = await axios.get(`http://localhost:3001/search/${key}`)
+    console.log(data)
+
+    dispatch({
+      type: SEARCH_PROPERTY_SUCCESS,
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+
+      type: SEARCH_PROPERTY_FAIL,
+      payload: error
+    })
+      // console.error("hello world")
+  }
+}
