@@ -47,11 +47,16 @@ function Profile() {
 
             {loading && <Spinner />}
             <div>
+                    <div className="main">
+                    <ul className="cards">
+                 
                 {userPropertyData && userPropertyData.map((property) => (
                     <ListingCard key={property._id} property={property} />
                    
                 )
                 )}
+                    </ul>
+                    </div> 
             </div>
         </>
     )
