@@ -10,6 +10,9 @@ router.get("/:key",async(req,res) =>{
             // {city: { $regex: req.params.key}}
         ]
     });
+    if(result.length === 0){
+        return res.send("No Match Found")
+    }
     res.send(result)
 })
 module.exports = router

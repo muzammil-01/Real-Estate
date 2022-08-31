@@ -1,8 +1,7 @@
 import axios from "axios";
 import { ethers } from "ethers";
 import {
-  ERC721ABI,
-  ERC72FACTORYABI,
+  ERC721ABI,ERC72FACTORYABI,
   ERC72FACTORYContractAddress,
 } from "../../Redux/constants/erc721ABI";
 import { useState, useEffect } from "react";
@@ -72,17 +71,23 @@ function AddProperty() {
       const erc721Factory = new ethers.Contract(
         ERC72FACTORYContractAddress,
         ERC72FACTORYABI,
-        signer,
-        { gas: 2100000, gasPrice: 8000000000 }
+        signer
       );
-
+      console.log(_propertyAddress,
+        _ownerName,
+        _totalSupply,
+        pricePerToken,
+        _tokensPerWallet)
       const txResponse = await erc721Factory.cloneContract(
         _propertyAddress,
         _ownerName,
         _totalSupply,
         pricePerToken,
-        _tokensPerWallet
+        _tokensPerWallet,
+        { gasLimit: 5000000 }
+
       );
+      console.log(txResponse)
       erc721Factory.on("CloneCreatedAt", (from, cloneAdd) => {
         setCloneAddress((prevAdd) => (prevAdd = cloneAdd));
         setCloneOwner((prevAdd) => (prevAdd = from));
@@ -201,9 +206,7 @@ function AddProperty() {
     }
   };
   return (
-	  <>
-		  <Navbar/>
-      <div className="backgroundImg">
+    <>
         <div>
           {successfull && <SuccessModal />}
           {uploading && <Spinner />}
@@ -269,7 +272,7 @@ function AddProperty() {
               required
               onChange={(e) => setNumberOfTokenPerWallet(e.target.value)}
             />
-			<label htmlFor="image-file" style={{color:"White"}}> <h5>Property Images</h5></label>
+            <label htmlFor="image-file" style={{ color: "White" }}> <h5>Property Images</h5></label>
             <input
               type="file"
               id="image-file"
@@ -278,7 +281,7 @@ function AddProperty() {
               multiple
               onChange={(e) => setPropertyImages(e.target.files)}
             />
-			<label htmlFor="image-file" style={{color:"White"}}><h5> Property Documents</h5></label>
+            <label htmlFor="image-file" style={{ color: "White" }}><h5> Property Documents</h5></label>
             <input
               type="file"
               id="image-file"
@@ -368,7 +371,7 @@ function AddProperty() {
             <br />
           </form>
         </div>
-      </div>
+      
     </>
   );
 }

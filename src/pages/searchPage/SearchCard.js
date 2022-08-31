@@ -3,14 +3,8 @@ import { Link } from 'react-router-dom'
 
 
 function SearchCard({property}) {
-    const [match, setMatch] = useState('')
-    if(property.length === 0 ){
-        setMatch("No Matches")
-    }
-    console.log(match)
   return (
     <>
-    {match && <p>{match}</p>}
          <div className='market-card'>
         <div className='content' >
             <div className='image'>

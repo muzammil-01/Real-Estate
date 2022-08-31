@@ -4,81 +4,16 @@ import './Profile.css'
 import CancleModal from '../../components/cancleModal/CancleModal'
 import ResellModal from '../../components/resellModal/ResellModal'
 
-import { ERC721ABI } from "../../Redux/constants/erc721ABI";
-import { ethers } from "ethers";
+
 
 
 function ListingCard({ property }) {
 	const [cancleModal, setCancleModal] = useState(false)
 	const [resellModal, setResellModal] = useState(false)
-	// const ListTokens = async () => {
-	// 	try {
-
-	// 	if (window.ethereum) {
-	// 		const accounts = await window.ethereum.request({
-	// 			method: "eth_requestAccounts",
-	// 		  });
-	// 		  const address = accounts[0];
-	// 		  let provider = new ethers.providers.Web3Provider(window.ethereum);
-	// 		let signer = provider.getSigner();
-	// 		const ERC721 = new ethers.Contract(
-	// 			ERC721ContractAddress,
-	// 			ERC721ABI,
-	// 			signer,
-	// 			{ gas: 2100000, gasPrice: 800000000 }
-	// 		);
-	// 		let tx= await ERC721.listForsale(quantity,pricePerToken)
-	// 		ERC721.on("ListToken", (quantity, pricePerToken) => {
-	// 			console.log(`quantity: ${quantity} ,pricePerToken:${pricePerToken}`)
-	// 		})
-	// 		} 
-	// 	else {
-	// 		console.alert("Please Install MetaMask Extension")
-	// 		}
-	// 	}
-	// 	catch (error) {
-	// 		console.error(error.message)
-	// 	}
-	// }
-
-
-	// const CancelListing = async () => {
-	// 	try {
-
-	// 		if (window.ethereum) {
-	// 			const accounts = await window.ethereum.request({
-	// 				method: "eth_requestAccounts",
-	// 			  });
-	// 			  const address = accounts[0];
-	// 			  let provider = new ethers.providers.Web3Provider(window.ethereum);
-	// 			let signer = provider.getSigner();
-	// 			const ERC721 = new ethers.Contract(
-	// 				ERC721ContractAddress,
-	// 				ERC721ABI,
-	// 				signer,
-	// 				{ gas: 2100000, gasPrice: 800000000 }
-	// 			);
-	// 			let tx= await ERC721.CancelListings(quantity)
-	// 			ERC721.on("ListToken", (quantity) => {
-	// 				console.log(`quantity: ${quantity}`)
-	// 			})
-	// 			} 
-	// 		else {
-	// 			console.alert("Please Install MetaMask Extension")
-	// 			}
-	// 		}
-	// 		catch (error) {
-	// 			console.error(error.message)
-	// 		}
-	// }
-
-
-
 	return (
 		<>
-
-
-
+		  <div>
+            </div>
 			<li className="cards_item">
 				<div className="card">
 					<div className="card_image">

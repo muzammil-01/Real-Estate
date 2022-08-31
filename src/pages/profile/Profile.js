@@ -4,7 +4,14 @@ import "./Profile.css"
 import Spinner from '../../components/spinner/Spinner'
 import ListingCard from './ListingCard'
 import { useSelector } from 'react-redux'
+import Navbar from '../../components/Navbar/Navbar'
+
+
 function Profile() {
+    
+    const userSpecificProperties = useSelector(state => state.userSpecificProperties)
+    const { loading, error, propertyData } = userSpecificProperties
+    
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
     const [userPropertyData, setUserPropertyData] = useState(null)
@@ -29,10 +36,14 @@ function Profile() {
     setUserPropertyData(data)
 }
 
-    const userSpecificProperties = useSelector(state => state.userSpecificProperties)
-    const { loading, error, propertyData } = userSpecificProperties
+
+
+
+
+    
     return (
         <>
+        <Navbar/>
             <h1 style={{ color: "white", textAlign: "center" }}>Your Profile</h1>
             <div className='user-details'>
                 <div className="info">
