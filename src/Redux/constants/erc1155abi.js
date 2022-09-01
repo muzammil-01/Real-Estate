@@ -1,4 +1,4 @@
-export const ERC1155ABI=[
+export const ERC1155ABI = [
     {
       "inputs": [],
       "stateMutability": "nonpayable",
@@ -451,4 +451,4 @@ export const ERC1155ABI=[
     }
   ]
 
-export const ERC1155Address="0x5FbDB2315678afecb367f032d93F642f64180aa3";
+export const ERC1155Address = "0x536df59155CD36EF4fede42F6c4354d9b582db73";

@@ -208,8 +208,8 @@ function AddProperty() {
   return (
     <>
         <div>
-          {successfull && <SuccessModal />}
-          {uploading && <Spinner />}
+          {/* {successfull && <SuccessModal />}
+          {uploading && <Spinner />} */}
           {error && <div className="error">{message}</div>}
           <form
             className="property-form"

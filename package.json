@@ -19,6 +19,7 @@
     "ethers": "^5.6.9",
     "font-awesome": "^4.7.0",
     "i": "^0.3.7",
+    "mongoose-sequence": "^5.3.1",
     "npm": "^8.13.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",

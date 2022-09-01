@@ -24,8 +24,9 @@ export default function ResellModal({ setResell, property }) {
       );
       const transfer=await ERC1155.transfer(`${address}`,`${address}`,`100`,`20`,{gasLimit: 5000000})
       console.log(transfer)
-      ERC1155.on("transfer",(me,amount)=>{
-console.log(me)
+      ERC1155.on("Resell",(from,to,amount)=>{
+console.log(from)
+console.log(to)
 console.log(amount)
       })
     }

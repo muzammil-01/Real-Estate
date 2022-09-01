@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 const { Schema } = mongoose
+
 
 
 const PropertyDetailsSchema = new Schema({
@@ -7,6 +9,9 @@ const PropertyDetailsSchema = new Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
+    },
+    TokenId: {
+        type: Number,
     },
     ownerName: {
         type: String,
@@ -66,5 +71,7 @@ const PropertyDetailsSchema = new Schema({
         type: String,
         required: true
     },
-})
+},{TokenId: false })
+
+PropertyDetailsSchema.plugin(AutoIncrement,{inc_field: 'TokenId'});
 module.exports = mongoose.model('property', PropertyDetailsSchema)
