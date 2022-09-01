@@ -3,8 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import './TokensForSale.css'
 import Modal from '../../components/buyTokensModal/TokenModal'
+import { useSelector } from 'react-redux'
 function TokensForSale() {
   const [modalOpen, setModalOpen] = useState(false);
+
+  const propertyDetails = useSelector(state => state.propertyDetails)
+  const { loading, error, property } = propertyDetails
+  if(property){
+
+    console.log(property)
+  }
   return (
     <div>
       <h2 className='financial-heading'>tokens for sale</h2>

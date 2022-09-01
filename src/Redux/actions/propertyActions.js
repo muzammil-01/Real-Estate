@@ -120,12 +120,6 @@ export const listPropertyDetails = (id) => async (dispatch) => {
     })
   } catch (error) {
     console.error("hello world")
-    // dispatch({
-     
-    //   type: PROPERTY_DETAILS_FAIL,
-    //   payload: error.response && error.response.data.message ? error.response.data.message : error.message,
-     
-    // })
   }
 }
 

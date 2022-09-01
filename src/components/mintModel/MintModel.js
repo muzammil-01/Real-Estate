@@ -3,12 +3,15 @@ import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
-import { ERC1155ABI ,ERC1155Address} from "../../Redux/constants/erc1155abi";
+import { ERC1155ABI, ERC1155Address } from "../../Redux/constants/erc1155abi";
 import BN from "bn.js";
 import { useSelector, useDispatch } from "react-redux";
 
 
 function MintModel({ setOpenModal, property }) {
+  if(property){
+    console.log(property[0].propertyId.OwnerWalletAddress)
+  }
   const navigate = useNavigate();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -20,80 +23,68 @@ function MintModel({ setOpenModal, property }) {
     }
   }, [navigate]);
   var a = localStorage.getItem('userInfo')
-  if(a){
+  if (a) {
     var token = JSON.parse(a).authToken
   }
   const [count, setCount] = useState(0);
 
 
- const Mint = async () => { 
+  const Mint = async () => {
     try {
 
-        const accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
-        const address = accounts[0];
-        console.log(ERC1155Address)
-        let provider = new ethers.providers.Web3Provider(window.ethereum);
-        let signer = provider.getSigner();
-        const ERC1155 = new ethers.Contract(
-          "0x68B03e17443F4cBbb5958e621264fFED3F1A0b41",
-          ERC1155ABI,
-          signer
-        );
-        const mint=await ERC1155.mint(`${address}`,`100`,`20`,{gasLimit: 5000000})
-        console.log(mint)
-        ERC1155.on("Mint",(me,amount)=>{
-console.log(me)
-console.log(amount)
-        })
-        
-//         const mint = await ERC721.mint(
-//           `${property[0].SellerWalletAddress}`,
-//           `${count}`,
-//           { value:`${value}` , gasLimit: 5000000 }
-//         );
-//         // const mint = await ERC721.mint(
-//         //   "0x56973Cc2c56b2E7cadE05235Cdbe3074De19Fe77",
-//         //   `10`,
-//         //   { value:`${value}` , gasLimit: 5000000 }
-//         // );
-//         ERC721.on("Mint" , (to, quantity) => {
-// console.log(`to:${to},quantity:${quantity}`)
-//         });
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      const address = accounts[0];
+      console.log(ERC1155Address)
+      let provider = new ethers.providers.Web3Provider(window.ethereum);
+      let signer = provider.getSigner();
+      const ERC1155 = new ethers.Contract(
+        "0x68B03e17443F4cBbb5958e621264fFED3F1A0b41",
+        ERC1155ABI,
+        signer
+      );
+      const mint = await ERC1155.mint(`${property[0].propertyId.OwnerWalletAddress}`, `${property[0].propertyId.TokenId}`, `${count}`, { gasLimit: 5000000 })
+      console.log(mint)
+      ERC1155.on("Mint", (me, amount) => {
+        console.log(me)
+        console.log(amount)
+      })
 
-        const buyerData = {
-          quantity:count ,ListingTokensId:property[0]._id,BuyerWalletAddress:address
+
+      const buyerData = {
+
+        quantity: count, ListingTokensId: property[0]._id, BuyerWalletAddress: address, propertyId:property[0].propertyId._id
+      }
+      console.log(buyerData)
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          "auth-token": token
+
         }
-        console.log(buyerData)
+      }
+      const { data } = await axios.post('http://localhost:3001/api/buyerData', buyerData, config)
+      console.log(data)
 
-        const config = {
-          headers: {
-            'Content-Type': 'application/json',
-            "auth-token":token
-    
-          }
+
+
+
+      const newconfig = {
+        headers: {
+          'Content-Type': 'application/json',
+          "auth-token": token
+
         }
-        const {data} = await axios.post('http://localhost:3001/api/buyerData',buyerData,config)
-        console.log(data)
+      }
+      const newData = {
+        "TotalSupplies": property[0].TotalSupplies - count
+      }
 
+      const data1 = await axios.patch(`http://localhost:3001/api/property/update/${property[0]._id}`, newData, newconfig)
+      console.log(data1.data)
 
-
-
-         const newconfig = {
-          headers: {
-            'Content-Type': 'application/json',
-            "auth-token":token
-    
-          }
-        }
-        const newData = {
-          "TotalSupplies":property[0].TotalSupplies-count
-        }
-         
-        const data1 = await axios.patch(`http://localhost:3001/api/property/update/${property[0]._id}`, newData, newconfig)
-        console.log(data1.data)
-    
     } catch (error) {
       console.log(error);
     }

@@ -26,7 +26,6 @@ const ListingTokens = new Schema({
     },
     NumberOfTokenPerWallet:{
         type:String,
-        required:true,
     },
     date: {
         type: Date,

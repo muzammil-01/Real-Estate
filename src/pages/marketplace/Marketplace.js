@@ -15,11 +15,8 @@ const Marketplace = () => {
         dispatch(getAllProperties())
     }, [dispatch])
 
- 
-    
     const listAll = useSelector(state => state.listAll)
     const { loading, error, propertyData } = listAll
-    console.log(propertyData)
     return (
         <>
 

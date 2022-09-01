@@ -125,4 +125,13 @@ router.get("/:id", async(req, res)=>{
         return res.status(404).json('Product not found')
     } 
 })
+
+router.get("/propertyTokens/:id", async(req, res)=>{
+    try{
+        const listing = await ListingTokens.find({ propertyId: req.params.id});
+        return res.json(listing)
+    }catch(e){
+        return res.status(404).json('Product not found')
+    } 
+})
 module.exports = router

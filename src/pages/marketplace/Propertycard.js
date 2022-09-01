@@ -1,13 +1,9 @@
 import React , {useState} from 'react'
 import { Link } from 'react-router-dom'
-import image from '../../assets/bed.jpg'
 function Propertycard({ property }) {
-
 
     return (
         <div>
-       
-
             <div className='market-card'>
                 <div className='content' >
                     <div className='image'>

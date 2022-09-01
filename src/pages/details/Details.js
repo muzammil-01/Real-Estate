@@ -2,22 +2,16 @@ import React from 'react'
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import './Details.css'
 import { useSelector } from 'react-redux'
-
+import Spinner from '../../components/spinner/Spinner'
 
 function Details() {
 
   const propertyDetails = useSelector(state => state.propertyDetails)
   const { loading, error, property } = propertyDetails
-  if(property){
-
-    console.log(property)
-  }
-
-  
-
 
   return (
     <>
+    {loading && <Spinner/>}
     {property && 
     
       <div className='propertydetails'>

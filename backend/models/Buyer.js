@@ -7,6 +7,10 @@ const Buyer = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
+    propertyId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'property'
+    },
     ListingTokens:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'listingTokens'

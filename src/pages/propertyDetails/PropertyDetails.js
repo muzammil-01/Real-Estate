@@ -22,7 +22,6 @@ function PropertyDetails() {
 
     const propertyDetails = useSelector(state => state.propertyDetails)
     const { loading, error, property } = propertyDetails
-
     return (
         <>
             <Navbar />

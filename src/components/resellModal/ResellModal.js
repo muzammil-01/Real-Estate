@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { ERC1155ABI ,ERC1155Address} from "../../Redux/constants/erc1155abi";
+import { ERC1155ABI, ERC1155Address } from "../../Redux/constants/erc1155abi";
 import { ethers } from "ethers";
+import axios from 'axios'
 
 
 export default function ResellModal({ setResell, property }) {
@@ -9,30 +10,28 @@ export default function ResellModal({ setResell, property }) {
   const [price, setPrice] = useState(0)
 
   const ListTokens = async () => {
-    try {
-      const accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
-      const address = accounts[0];
-      console.log(ERC1155Address)
-      let provider = new ethers.providers.Web3Provider(window.ethereum);
-      let signer = provider.getSigner();
-      const ERC1155 = new ethers.Contract(
-        "0x68B03e17443F4cBbb5958e621264fFED3F1A0b41",
-        ERC1155ABI,
-        signer
-      );
-      const transfer=await ERC1155.transfer(`${address}`,`${address}`,`100`,`20`,{gasLimit: 5000000})
-      console.log(transfer)
-      ERC1155.on("Resell",(from,to,amount)=>{
-console.log(from)
-console.log(to)
-console.log(amount)
-      })
+    var a = localStorage.getItem('userInfo')
+    if (a) {
+      var token = JSON.parse(a).authToken
     }
-    catch (error) {
-      console.error(error.message)
+    const accounts = await window.ethereum.request({ method: "eth_requestAccounts" })
+    const address = accounts[0]
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    const signer = provider.getSigner()
+    const CurrentWalletAddress = await signer.getAddress()
+    const testData = {
+      Pricepertoken: price, SellerWalletAddress: CurrentWalletAddress, numberOfSupplies: count, propertyId: property._id
     }
+
+    console.log("test data", testData)
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        "auth-token": token
+      }
+    }
+    const data1 = await axios.post('http://localhost:3001/api/property/checkToken', testData, config)
   }
   return (
     <div className="modalBackground">
