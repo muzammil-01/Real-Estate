@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
-import { ERC721ABI } from "../../Redux/constants/erc721ABI";
+import { ERC1155ABI ,ERC1155Address} from "../../Redux/constants/erc1155abi";
 import BN from "bn.js";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -28,41 +28,39 @@ function MintModel({ setOpenModal, property }) {
 
  const Mint = async () => { 
     try {
-        console.log("TokenPrice", property[0].PricePerToken);
-        console.log("count", count);
-        console.log("wallet", property[0].SellerWalletAddress);
-        console.log(
-          "CloneAddress",
-          property[0].propertyId.PropertyContractAddress
-        );
-        let price = (property[0].PricePerToken*count);
-        console.log("price", price);
-        let value = ethers.utils.parseEther(`${price}`, 18);
+
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
         const address = accounts[0];
+        console.log(ERC1155Address)
         let provider = new ethers.providers.Web3Provider(window.ethereum);
         let signer = provider.getSigner();
-        const ERC721 = new ethers.Contract(
-          property[0].propertyId.PropertyContractAddress,
-          ERC721ABI,
+        const ERC1155 = new ethers.Contract(
+          "0x68B03e17443F4cBbb5958e621264fFED3F1A0b41",
+          ERC1155ABI,
           signer
         );
+        const mint=await ERC1155.mint(`${address}`,`100`,`20`,{gasLimit: 5000000})
+        console.log(mint)
+        ERC1155.on("Mint",(me,amount)=>{
+console.log(me)
+console.log(amount)
+        })
         
-        const mint = await ERC721.mint(
-          `${property[0].SellerWalletAddress}`,
-          `${count}`,
-          { value , gasLimit: 5000000 }
-        );
-        // const mint = await ERC721.mint(
-        //   "0x56973Cc2c56b2E7cadE05235Cdbe3074De19Fe77",
-        //   `10`,
-        //   { value:`${value}` , gasLimit: 5000000 }
-        // );
-        ERC721.on("Mint" , (to, quantity,event) => {
-console.log(`to:${to},quantity:${quantity},event:${event}`)
-        });
+//         const mint = await ERC721.mint(
+//           `${property[0].SellerWalletAddress}`,
+//           `${count}`,
+//           { value:`${value}` , gasLimit: 5000000 }
+//         );
+//         // const mint = await ERC721.mint(
+//         //   "0x56973Cc2c56b2E7cadE05235Cdbe3074De19Fe77",
+//         //   `10`,
+//         //   { value:`${value}` , gasLimit: 5000000 }
+//         // );
+//         ERC721.on("Mint" , (to, quantity) => {
+// console.log(`to:${to},quantity:${quantity}`)
+//         });
 
         const buyerData = {
           quantity:count ,ListingTokensId:property[0]._id,BuyerWalletAddress:address
