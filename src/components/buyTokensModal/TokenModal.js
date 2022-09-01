@@ -1,44 +1,50 @@
 import React , {useState} from 'react'
 import './TokenModal.css'
 import { ethers } from "ethers";
-import { ERC721ABI } from "../../Redux/constants/erc721ABI";
-import BN from "bn.js";
+import { ERC1155ABI, ERC1155Address } from "../../Redux/constants/erc1155abi";
 
-export default function TokenModal({setOpenModal}) {
+export default function TokenModal({setOpenModal, property}) {
+  if(property){
+    console.log(property)
+  }
     const [calculate, setCalculate] = useState(0)
     const [selectTokens, setSelectTokens] = useState(0)
-	const [tokenPrice, setTokenPrice] = useState(0)
+	  const [tokenPrice, setTokenPrice] = useState(0)
 	
-	// const TransferTokens = async () => { 
-	// 	try {
-	// 		const accounts = await window.ethereum.request({
-	// 			method: "eth_requestAccounts",
-	// 		  });
-	// 		  const address = accounts[0];
-	// 		  let provider = new ethers.providers.Web3Provider(window.ethereum);
-	// 		  let signer = provider.getSigner();
-	// 		  const erc721 = new ethers.Contract(
-	// 			property[0].SellerWalletAddress,
-	// 			ERC721ABI,
-	// 			signer
-	// 		  );
-	// 		let tx = erc721.transfer(from, to, quantity, { value: value, gasLimit: 5000000 })
-	// 		erc721.on("TransferToken", (from, to, quantity, priceperToken) => {
-				
-	// 		})
-			
-	// 	} catch (error) {
-			
-	// 	}
-	// }
 
 
+  const ListTokens = async () => {
+    try {
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      const address = accounts[0];
+      console.log(ERC1155Address)
+      let provider = new ethers.providers.Web3Provider(window.ethereum);
+      let signer = provider.getSigner();
+      const ERC1155 = new ethers.Contract(
+        "0x68B03e17443F4cBbb5958e621264fFED3F1A0b41",
+        ERC1155ABI,
+        signer
+      );
+      const transfer = await ERC1155.transfer(`${address}`, `${address}`, `100`, `20`, { gasLimit: 5000000 })
+      console.log(transfer)
+      ERC1155.on("Resell", (from, to, amount) => {
+        console.log(from)
+        console.log(to)
+        console.log(amount)
+      })
+    }
+    catch (error) {
+      console.error(error.message)
+    }
+  }
 
 
 
   return (
         <div className="modalBackground">
-          <div className="modalContainer">
+          <div className="modalContainer" style={{color:"black"}}>
             <div className="titleCloseBtn">
               <button
                 onClick={() => {
@@ -57,15 +63,11 @@ export default function TokenModal({setOpenModal}) {
                 </p>
             </div>
             <div className="footer">
-              <button
-                onClick={() => {
-                  setCalculate(selectTokens*tokenPrice)
-                }}
+              <button onClick={ListTokens}
                id="calculateBtn"
               >
-                Calculate
+                Buy Tokens
               </button>
-              <button>Buy tokens</button>
             </div>
           </div>
         </div>
