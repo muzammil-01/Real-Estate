@@ -6,7 +6,7 @@ import './SuccessModal.css'
 export default function SuccessModal() {
   const navigate = useNavigate()
   const handleClick = ()=>{
-    navigate('/')
+    navigate('/marketplace')
   }
   return (
     <div className="success-container">

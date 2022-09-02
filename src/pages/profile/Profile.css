@@ -1,6 +1,12 @@
 /* Font */
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
 /* User details section style */
+.Notok{
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+}
 .user-details {
   color: white;
   background-color: var(--secondaryColor);

@@ -1,15 +1,20 @@
 import React, { useState } from 'react'
-import { ERC1155ABI, ERC1155Address } from "../../Redux/constants/erc1155abi";
 import { ethers } from "ethers";
 import axios from 'axios'
+import "./ResellModal.css"
+import SuccessModal from '../../components/success modal/SuccessModal'
+
 
 
 export default function ResellModal({ setResell, property }) {
   console.log(property)
   const [count, setCount] = useState(0);
   const [price, setPrice] = useState(0)
+  const [successfull, setSuccessfull] = useState(false);
+
 
   const ListTokens = async () => {
+
     var a = localStorage.getItem('userInfo')
     if (a) {
       var token = JSON.parse(a).authToken
@@ -20,7 +25,7 @@ export default function ResellModal({ setResell, property }) {
     const signer = provider.getSigner()
     const CurrentWalletAddress = await signer.getAddress()
     const testData = {
-      Pricepertoken: price, SellerWalletAddress: CurrentWalletAddress, numberOfSupplies: count, propertyId: property._id
+      Pricepertoken: price, SellerWalletAddress: CurrentWalletAddress, numberOfSupplies: count, propertyId: property.propertyId._id
     }
 
     console.log("test data", testData)
@@ -31,9 +36,14 @@ export default function ResellModal({ setResell, property }) {
         "auth-token": token
       }
     }
-    const data1 = await axios.post('http://localhost:3001/api/property/checkToken', testData, config)
+    const {data} = await axios.post('http://localhost:3001/api/property/checkToken', testData, config)
+    if(data) {
+      setSuccessfull(true)
+    }
   }
   return (
+    <>
+    {successfull && <SuccessModal />}
     <div className="modalBackground">
       <div className="modalContainer">
         <div className="titleCloseBtn">
@@ -46,11 +56,13 @@ export default function ResellModal({ setResell, property }) {
           </button>
         </div>
         <div className="title">
-          <p>Enter No of tokens you want to buy and price of 1 token</p>
+          <p>Enter No of tokens you want to Sell and price of 1 token</p>
         </div>
         <div className="body">
           <p>
-            <input type="text" placeholder='Enter price of 1 token' onChange={(e) => { setPrice(e.target.value) }} />
+            <input type="text" placeholder='Enter price of 1 token' onChange={(e) => { setPrice(e.target.value) }} className="resellInp"/>
+          </p>
+          <p>
             {count === 0 && (
               <button
                 disabled
@@ -85,5 +97,6 @@ export default function ResellModal({ setResell, property }) {
         </div>
       </div>
     </div>
+    </>
   )
 }

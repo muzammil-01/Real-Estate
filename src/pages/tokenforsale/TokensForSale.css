@@ -30,3 +30,10 @@
 .tokensCard > h3{
     text-align: left;
 }
+.notokens{
+color:white;
+text-align:center;
+font-weight:bold;
+font-size: x-large;
+}
+ 

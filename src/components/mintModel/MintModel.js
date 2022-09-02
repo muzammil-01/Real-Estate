@@ -9,9 +9,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 
 function MintModel({ setOpenModal, property }) {
-  if(property){
-    console.log(property[0].propertyId.OwnerWalletAddress)
-  }
   const navigate = useNavigate();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -36,7 +33,6 @@ function MintModel({ setOpenModal, property }) {
         method: "eth_requestAccounts",
       });
       const address = accounts[0];
-      console.log(ERC1155Address)
       let provider = new ethers.providers.Web3Provider(window.ethereum);
       let signer = provider.getSigner();
       const ERC1155 = new ethers.Contract(
@@ -56,7 +52,6 @@ function MintModel({ setOpenModal, property }) {
 
         quantity: count, ListingTokensId: property[0]._id, BuyerWalletAddress: address, propertyId:property[0].propertyId._id
       }
-      console.log(buyerData)
 
       const config = {
         headers: {
@@ -66,7 +61,6 @@ function MintModel({ setOpenModal, property }) {
         }
       }
       const { data } = await axios.post('http://localhost:3001/api/buyerData', buyerData, config)
-      console.log(data)
 
 
 
@@ -83,9 +77,10 @@ function MintModel({ setOpenModal, property }) {
       }
 
       const data1 = await axios.patch(`http://localhost:3001/api/property/update/${property[0]._id}`, newData, newconfig)
-      console.log(data1.data)
+     
 
-    } catch (error) {
+    } 
+    catch (error) {
       console.log(error);
     }
   };

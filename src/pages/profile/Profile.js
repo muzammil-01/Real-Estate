@@ -45,11 +45,6 @@ function Profile() {
     }
 
 
-    if(userTokens){
-        console.log(userTokens)
-    }
-
-
     const fetchUserProperties = async () => {
         const config = {
             headers: {
@@ -80,6 +75,7 @@ function Profile() {
 
 
             <h1 className="headingOne">Your Tokens</h1>
+            {userTokens && userTokens.length === 0 ? <p className='Notok'>No Tokens ..... </p> : ""}
             <div className="main">
                 <ul className="cards">
                     {userTokens && userTokens.map((tokens) => (
@@ -90,6 +86,7 @@ function Profile() {
             </div>
 
             <h1 className='headingOne'>Your Listings</h1>
+            {userPropertyData && userPropertyData.length === 0 ? <p className='Notok'>No Listings ..... </p> : ""}
             <div>
                 <div className="main">
                     <ul className="cards">

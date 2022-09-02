@@ -2,14 +2,17 @@ import React , {useState} from 'react'
 import './TokenModal.css'
 import { ethers } from "ethers";
 import { ERC1155ABI, ERC1155Address } from "../../Redux/constants/erc1155abi";
+import axios from 'axios'
 
 export default function TokenModal({setOpenModal, property}) {
+  var a = localStorage.getItem('userInfo')
+if(a){
+  var token = JSON.parse(a).authToken
+}
+  const [selectTokens, setSelectTokens] = useState(0)
   if(property){
     console.log(property)
   }
-    const [calculate, setCalculate] = useState(0)
-    const [selectTokens, setSelectTokens] = useState(0)
-	  const [tokenPrice, setTokenPrice] = useState(0)
 	
 
 
@@ -27,13 +30,29 @@ export default function TokenModal({setOpenModal, property}) {
         ERC1155ABI,
         signer
       );
-      const transfer = await ERC1155.transfer(`${address}`, `${address}`, `100`, `20`, { gasLimit: 5000000 })
+      const transfer = await ERC1155.transfer(`${property.SellerWalletAddress}`, `${address}`, `${property.propertyId.TokenId}`, `${selectTokens}`, { gasLimit: 5000000 })
       console.log(transfer)
       ERC1155.on("Resell", (from, to, amount) => {
         console.log(from)
         console.log(to)
         console.log(amount)
       })
+
+      const buyerData = {
+
+        quantity: selectTokens, ListingTokensId: property._id, BuyerWalletAddress: address, propertyId:property.propertyId._id
+      }
+      console.log(buyerData)
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          "auth-token": token
+
+        }
+      }
+      const { data } = await axios.post('http://localhost:3001/api/buyerData', buyerData, config)
+      console.log(data)
     }
     catch (error) {
       console.error(error.message)
@@ -58,9 +77,10 @@ export default function TokenModal({setOpenModal, property}) {
               <p>Enter No of tokens you want to buy and price of 1 token</p>
             </div>
             <div className="body">
-            <p>TOKEN STOCK : 8980 </p>
-            <p> Enter Tokens: <input type="number"  min={0} onChange={(e)=> setSelectTokens(e.target.value)}/> X 1 token price = <input type="number" min={0} onChange={(e)=> setTokenPrice(e.target.value)}/> = <span>{calculate}</span>
-                </p>
+            <p><b>TOKEN FOR SALE : {property.TotalSupplies} </b> </p>
+            <p><b>PRICE OF ONE TOKEN: {property.PricePerToken} $ </b></p>
+            <p><b> Enter Tokens: <input type="number"  min={0} onChange={(e)=> setSelectTokens(e.target.value)} className="entertokens" max={property.TotalSupplies} required/>
+                </b></p>
             </div>
             <div className="footer">
               <button onClick={ListTokens}

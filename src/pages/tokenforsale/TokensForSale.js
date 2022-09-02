@@ -10,15 +10,18 @@ function TokensForSale() {
 
   const propertyDetails = useSelector(state => state.propertyDetails)
   const { loading, error, property } = propertyDetails
+  if(property){
+    console.log(property)
+  }
 
   return (
     <div>
       {loading && <Spinner />}
       <h2 className='financial-heading'>tokens for sale</h2>
-      {property && property.slice(1).map((property) => (
-        <p key={property._id} className='tokensforsale'>
+      {property && property.length === 1 ?  <p className="notokens">No Tokens For Sale</p>:
+        property.slice(1).map((property) => (
+         <p key={property._id} className='tokensforsale'>
           <FontAwesomeIcon icon={faCircleUser} className="userIcon" />
-
           <span>
             ID: {property._id}
           </span>
@@ -34,8 +37,6 @@ function TokensForSale() {
         </p>
       ))
       }
-
-
     </div>
   )
 }
