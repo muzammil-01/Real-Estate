@@ -7,7 +7,6 @@ import SuccessModal from '../../components/success modal/SuccessModal'
 
 
 export default function ResellModal({ setResell, property }) {
-  console.log(property)
   const [count, setCount] = useState(0);
   const [price, setPrice] = useState(0)
   const [successfull, setSuccessfull] = useState(false);
@@ -37,6 +36,7 @@ export default function ResellModal({ setResell, property }) {
       }
     }
     const {data} = await axios.post('http://localhost:3001/api/property/checkToken', testData, config)
+   
     if(data) {
       setSuccessfull(true)
     }
@@ -59,31 +59,19 @@ export default function ResellModal({ setResell, property }) {
           <p>Enter No of tokens you want to Sell and price of 1 token</p>
         </div>
         <div className="body">
+          <p>Tokens available to resell: {property.quantity}</p>
           <p>
             <input type="text" placeholder='Enter price of 1 token' onChange={(e) => { setPrice(e.target.value) }} className="resellInp"/>
           </p>
           <p>
-            {count === 0 && (
-              <button
-                disabled
-                style={{ cursor: "not-allowed" }}
-                className="decreaseBtn"
-                onClick={() => setCount(count - 1)}
-              >
-                -
-              </button>
-            )}
-            {count !== 0 && (
-              <button
-                className="decreaseBtn"
-                onClick={() => setCount(count - 1)}
-              >
-                -
-              </button>
-            )}
+            
+            <button className={count !==0 ? 'decBtnActive': 'decBtnNotActive'} onClick={() => setCount(count - 1)} >
+              -
+            </button>
             <span className="tokenValue"> <b> {count} </b></span>
+
             <button
-              className="increaseBtn"
+              className={count !== parseInt(property.quantity) ? 'incBtnActive':'incBtnNotActive' }
               onClick={() => setCount(count + 1)}
             >
               +

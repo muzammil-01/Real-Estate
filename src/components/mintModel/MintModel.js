@@ -3,12 +3,15 @@ import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
-import { ERC1155ABI, ERC1155Address } from "../../Redux/constants/erc1155abi";
-import BN from "bn.js";
-import { useSelector, useDispatch } from "react-redux";
+import { ERC1155ABI} from "../../Redux/constants/erc1155abi";
+import { useSelector} from "react-redux";
+import MintSuccess from '../MintSuccess/MintSuccess'
 
 
 function MintModel({ setOpenModal, property }) {
+
+  const [count, setCount] = useState(0);
+  const [show, setShow] = useState(true)
   const navigate = useNavigate();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -23,7 +26,6 @@ function MintModel({ setOpenModal, property }) {
   if (a) {
     var token = JSON.parse(a).authToken
   }
-  const [count, setCount] = useState(0);
 
 
   const Mint = async () => {
@@ -62,6 +64,10 @@ function MintModel({ setOpenModal, property }) {
       }
       const { data } = await axios.post('http://localhost:3001/api/buyerData', buyerData, config)
 
+      if(data){
+        setShow(true)
+      }
+
 
 
 
@@ -87,6 +93,7 @@ function MintModel({ setOpenModal, property }) {
 
   return (
     <div>
+      {show ? <div> <MintSuccess count={count}/> </div>: 
       <div className="mintModalBackground">
         <div className="mintModalContainer">
           <div className="mintModaltitleCloseBtn">
@@ -103,49 +110,38 @@ function MintModel({ setOpenModal, property }) {
           </div>
           <div className="mintModalbody">
             <p>
-              <b>TOKEN STOCK </b>: <h3> <u> {property[0].TotalSupplies} </u> </h3>{" "}
+              <b>TOKEN STOCK </b>: <span style={{fontSize:"20px", fontWeight:"bold"}}> <u> {property[0].TotalSupplies} </u> </span>{" "}
             </p>
             <p>
-              <b>Price of One Token </b>: <h3> <u> {property[0].PricePerToken} ETH </u> </h3>{" "}
+              <b>Price of One Token </b>: <span style={{fontSize:"20px", fontWeight:"bold"}}> {property[0].PricePerToken} $</span>{" "}
             </p>
             <h5>
               {property[0].propertyId.numberOfSupplies - property[0].TotalSupplies} / {property[0].propertyId.numberOfSupplies} minted
             </h5>
             <p>
-              {count === 0 && (
-                <button
-                  disabled
-                  style={{ cursor: "not-allowed" }}
-                  className="decreaseBtn"
-                  onClick={() => setCount(count - 1)}
-                >
-                  -
-                </button>
-              )}
-              {count !== 0 && (
-                <button
-                  className="decreaseBtn"
-                  onClick={() => setCount(count - 1)}
-                >
-                  -
-                </button>
-              )}
-              <span className="tokenValue"> <b> {count} </b></span>
-              <button
-                className="increaseBtn"
-                onClick={() => setCount(count + 1)}
-              >
-                +
-              </button>
+            <button className={count !==0 ? 'decBtnActive': 'decBtnNotActive'} onClick={() => setCount(count - 1)} >
+              -
+            </button>
+            <span className="tokenValue"> <b> {count} </b></span>
+
+            <button
+              className={count !== parseInt(property[0].TotalSupplies) ? 'incBtnActive':'incBtnNotActive' }
+              onClick={() => setCount(count + 1)}
+            >
+              +
+            </button>
             </p>
           </div>
           <div className="mintModalfooter">
+            {parseInt(property[0].TotalSupplies) === 0 ? <p style={{fontSize:"large", backgroundColor:"crimson", borderRadius:"20px", padding:"10px", color:"white"}}>All tokens are minted</p>:
             <button id="mintModalcalculateBtn" onClick={Mint}>
               Mint
             </button>
+            }
           </div>
         </div>
       </div>
+}
     </div>
   );
 }

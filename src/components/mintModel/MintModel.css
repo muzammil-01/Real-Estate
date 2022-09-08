@@ -1,22 +1,3 @@
-
-.increaseBtn{
-  border: 0.2px solid white;
-  outline: none;
-  color: rgb(255, 255, 255);
-  font-size: x-large;
-  border-radius: 20px;
-  background-color: rgb(82, 212, 77);
-  width: 50px; 
-}
-.decreaseBtn{
-border: 0.2px solid white;
-  outline: none;
-  color: rgb(255, 255, 255);
-  font-size: x-large;
-  border-radius: 20px;
-  background-color: rgb(244, 57, 57);
-  width: 50px; 
-}
 .tokenValue{
 margin: 0px 20px 0px 20px;
 }

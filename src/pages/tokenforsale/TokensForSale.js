@@ -1,40 +1,19 @@
-import React, { useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
+import React from "react";
 import './TokensForSale.css'
-import Modal from '../../components/buyTokensModal/TokenModal'
+import TokenList from "./TokenList";
 import Spinner from '../../components/spinner/Spinner'
 import { useSelector } from 'react-redux'
 function TokensForSale() {
-  const [modalOpen, setModalOpen] = useState(false);
 
   const propertyDetails = useSelector(state => state.propertyDetails)
   const { loading, error, property } = propertyDetails
-  if(property){
-    console.log(property)
-  }
 
   return (
     <div>
       {loading && <Spinner />}
       <h2 className='financial-heading'>tokens for sale</h2>
-      {property && property.length === 1 ?  <p className="notokens">No Tokens For Sale</p>:
-        property.slice(1).map((property) => (
-         <p key={property._id} className='tokensforsale'>
-          <FontAwesomeIcon icon={faCircleUser} className="userIcon" />
-          <span>
-            ID: {property._id}
-          </span>
-
-          <span>
-           No of Tokens: {property.TotalSupplies}
-          </span>
-
-          <button className='buytokensbtn' onClick={() => {
-            setModalOpen(true);
-          }}>Buy Tokens</button>
-          {modalOpen && <Modal setOpenModal={setModalOpen} property={property} />}
-        </p>
+      {property && property.map((property) => (
+        <TokenList key={property._id} property={property}/>
       ))
       }
     </div>

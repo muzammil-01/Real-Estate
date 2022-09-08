@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ethers } from "ethers";
 import {
-  ERC721ABI,ERC72FACTORYABI,
+  ERC721ABI, ERC72FACTORYABI,
   ERC72FACTORYContractAddress,
 } from "../../Redux/constants/erc721ABI";
 import { useState, useEffect } from "react";
@@ -207,171 +207,174 @@ function AddProperty() {
   };
   return (
     <>
-        <div>
-          {successfull && <SuccessModal />}
-          {uploading && <Spinner />}
-          {error && <div className="error">{message}</div>}
-          <form
-            className="property-form"
-            onSubmit={submitHandler}
-            encType="multipart/form-data"
+      <div>
+        {successfull && <SuccessModal />}
+        {uploading && <Spinner />}
+        {error && <div className="error">{message}</div>}
+
+
+        <form className="property-form" onSubmit={submitHandler} encType="multipart/form-data">
+
+          <div className="top-heading">
+            <h1>Add Property</h1>
+          </div>
+
+          <br />
+          <label style={{ color: "lightgray", float: "left", marginBottom:"-21px"}}>Enter Owner Name</label>
+          <input
+            type="text"
+            name="ownerName"
+            value={ownerName}
+            className="inputs"
+            required
+            onChange={(e) => setOwnerName(e.target.value)}
+            placeholder="Enter Owner Name"
+          />
+          <label  className="labels"> Enter Supplies</label>
+          <input
+            type="Number"
+            name="numberOfSupplies"
+            min={0}
+            className="inputs"
+            required
+            onChange={(e) => setNumberOfSupplies(e.target.value)}
+            placeholder="Enter Supplies"
+          />
+          <label  className="labels"> Enter property address</label>
+          <input
+            type="text"
+            name="propertyAddress"
+            value={propertyAddress}
+            className="inputs"
+            required
+            onChange={(e) => setPropertyAddress(e.target.value)}
+            placeholder="Enter property address"
+          />
+
+          <label className="labels"> Enter property Price</label>
+          <input
+            type="Number"
+            name="propertyPrice"
+            min={0}
+            className="inputs"
+            required
+            onChange={(e) => setPropertyPrice(e.target.value)}
+            placeholder="Enter property Price"
+          />
+
+          <label className="labels" > Enter Number of token per wallet</label>
+          <input
+            type="Number"
+            name="NumberOfTokenPerWallet"
+            className="inputs"
+            min={0}
+            required
+            onChange={(e) => setNumberOfTokenPerWallet(e.target.value)}
+            placeholder="Enter Number of token per wallet"
+          />
+
+          <label className="labels"> Select property images</label>
+          <input
+            type="file"
+            id="image-file"
+            label="Choose File"
+            className="inputs"
+            multiple
+            onChange={(e) => setPropertyImages(e.target.files)}
+          />
+
+           <label className="labels"> Select property documents</label>
+          <input
+            type="file"
+            id="image-file"
+            label="Choose File"
+            className="inputs"
+            multiple
+            onChange={(e) => setPropertyDocuments(e.target.files)}
+          />
+
+           <label className="labels"> Enter no of beds</label>
+          <input
+            type="number"
+            name="beds"
+            min={0}
+            className="inputs"
+            required
+            onChange={(e) => setBeds(e.target.value)}
+            placeholder="Enter no of beds"
+          />
+           <label className="labels"> Enter no of baths</label>
+          <input
+            type="number"
+            name="baths"
+            min={0}
+            className="inputs"
+            required
+            onChange={(e) => setBaths(e.target.value)}
+            placeholder="Enter no of baths"
+          />
+
+           <label className="labels"> Enter area in sqft</label>
+          <input
+            type="Number"
+            name="size"
+         placeholder="Enter area in sqft"
+            min={0}
+            className="inputs"
+            required
+            onChange={(e) => setSize(e.target.value)}
+          />
+
+           <label className="labels"> Enter country</label>
+          <input
+            type="text"
+            name="country"
+            value={country}
+            placeholder="Enter country"
+            className="inputs"
+            required
+            onChange={(e) => setCountry(e.target.value)}
+          />
+
+           <label className="labels"> Enter city</label>
+          <input
+            type="text"
+            name="city"
+            value={city}
+            placeholder="Enter city"
+            className="inputs"
+            required
+            onChange={(e) => setCity(e.target.value)}
+          />
+           <label className="labels"> Enter postal code</label>
+          <input
+            type="text"
+            name="postalcode"
+            value={postalcode}
+            placeholder="Enter postal code"
+            className="inputs"
+            required
+            onChange={(e) => setPostalCode(e.target.value)}
+          />
+
+          <br />
+          <button
+            className="logbtn"
+            onClick={() =>
+              Clone(
+                propertyAddress,
+                ownerName,
+                numberOfSupplies,
+                numberOfTokenPerWallet
+              )
+            }
           >
-            <div className="top-heading">
-              <h1>Add Property</h1>
-            </div>
-            <br />
-            <input
-              type="text"
-              name="ownerName"
-              value={ownerName}
-              className="inputs"
-              placeholder="owner name"
-              required
-              onChange={(e) => setOwnerName(e.target.value)}
-            />
+            Submit
+          </button>
+          <br />
+        </form>
+      </div>
 
-            <input
-              type="Number"
-              name="numberOfSupplies"
-              // value={numberOfSupplies}
-              min={0}
-              className="inputs"
-              placeholder="Enter Supplies"
-              required
-              onChange={(e) => setNumberOfSupplies(e.target.value)}
-            />
-
-            <input
-              type="text"
-              name="propertyAddress"
-              value={propertyAddress}
-              className="inputs"
-              placeholder="Enter property address"
-              required
-              onChange={(e) => setPropertyAddress(e.target.value)}
-            />
-
-            <input
-              type="Number"
-              name="propertyPrice"
-              min={0}
-              // value={propertyPrice}
-              className="inputs"
-              placeholder="Enter property Price"
-              required
-              onChange={(e) => setPropertyPrice(e.target.value)}
-            />
-
-            <input
-              type="Number"
-              name="NumberOfTokenPerWallet"
-              // value={numberOfTokenPerWallet}
-              className="inputs"
-              min={0}
-              placeholder="Enter Number of token per share per wallet"
-              required
-              onChange={(e) => setNumberOfTokenPerWallet(e.target.value)}
-            />
-            <label htmlFor="image-file" style={{ color: "White" }}> <h5>Property Images</h5></label>
-            <input
-              type="file"
-              id="image-file"
-              label="Choose File"
-              className="inputs"
-              multiple
-              onChange={(e) => setPropertyImages(e.target.files)}
-            />
-            <label htmlFor="image-file" style={{ color: "White" }}><h5> Property Documents</h5></label>
-            <input
-              type="file"
-              id="image-file"
-              label="Choose File"
-              className="inputs"
-              multiple
-              onChange={(e) => setPropertyDocuments(e.target.files)}
-            />
-
-            <input
-              type="number"
-              name="beds"
-              min={0}
-              // value={beds}
-              className="inputs"
-              placeholder="No of beds"
-              required
-              onChange={(e) => setBeds(e.target.value)}
-            />
-
-            <input
-              type="number"
-              name="baths"
-              min={0}
-              // value={baths}
-              className="inputs"
-              placeholder="No of baths"
-              required
-              onChange={(e) => setBaths(e.target.value)}
-            />
-
-            <input
-              type="Number"
-              name="size"
-              // value={size}
-              min={0}
-              className="inputs"
-              placeholder="Enter Area in sqft"
-              required
-              onChange={(e) => setSize(e.target.value)}
-            />
-
-            <input
-              type="text"
-              name="country"
-              value={country}
-              className="inputs"
-              placeholder="Enter country"
-              required
-              onChange={(e) => setCountry(e.target.value)}
-            />
-
-            <input
-              type="text"
-              name="city"
-              value={city}
-              className="inputs"
-              placeholder="Enter city"
-              required
-              onChange={(e) => setCity(e.target.value)}
-            />
-
-            <input
-              type="text"
-              name="postalcode"
-              value={postalcode}
-              className="inputs"
-              placeholder="Enter postalcode"
-              required
-              onChange={(e) => setPostalCode(e.target.value)}
-            />
-
-            <br />
-            <button
-              className="logbtn"
-              onClick={() =>
-                Clone(
-                  propertyAddress,
-                  ownerName,
-                  numberOfSupplies,
-                  numberOfTokenPerWallet
-                )
-              }
-            >
-              Submit
-            </button>
-            <br />
-          </form>
-        </div>
-      
     </>
   );
 }

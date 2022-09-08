@@ -17,8 +17,6 @@ router.post("/buyerData",fetchuser,async (req,res)=>{
             })
         if(result.length===0){
             //create new
-        
-        
         buyerData = await Buyer.create({
             user:req.user.id,
             ListingTokens: mongoose.Types.ObjectId(req.body.ListingTokensId),
@@ -28,6 +26,7 @@ router.post("/buyerData",fetchuser,async (req,res)=>{
            })
            console.log({buyerData})
            res.json({buyerData})
+           
         }else{
             //update doc
             req.body.quantity = parseInt(result[0].quantity) + parseInt(req.body.quantity)

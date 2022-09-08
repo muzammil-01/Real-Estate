@@ -5,15 +5,12 @@ import { ERC1155ABI, ERC1155Address } from "../../Redux/constants/erc1155abi";
 import axios from 'axios'
 
 export default function TokenModal({setOpenModal, property}) {
+  console.log(property._id)
   var a = localStorage.getItem('userInfo')
 if(a){
   var token = JSON.parse(a).authToken
 }
   const [selectTokens, setSelectTokens] = useState(0)
-  if(property){
-    console.log(property)
-  }
-	
 
 
   const ListTokens = async () => {
@@ -52,7 +49,24 @@ if(a){
         }
       }
       const { data } = await axios.post('http://localhost:3001/api/buyerData', buyerData, config)
-      console.log(data)
+
+
+
+      const updateListing = {
+
+        TotalSupplies: selectTokens
+      }
+      console.log(updateListing)
+
+      const newconfig = {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+      const { data1 } = await axios.post(`http://localhost:3001/api/property/propertyTokens/${property._id}`, updateListing, newconfig)
+
+
+
     }
     catch (error) {
       console.error(error.message)

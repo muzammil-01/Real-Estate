@@ -12,7 +12,7 @@ const JWT_SECRET = "Mynameismuzammil"
 
 // create user using route '/api/auth/createuser' no Auth required
 router.post('/register' ,async (req, res) => {
-    const { name, email, password, image} = req.body
+    const { firstName,lastName, email, password, image} = req.body
     const userExists = await User.findOne({ email })
 
 
@@ -22,7 +22,8 @@ router.post('/register' ,async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     secPass = await bcrypt.hash(password, salt)
     const user = await User.create({
-        name,
+        firstName,
+        lastName,
         email,
         password: secPass,
         image
@@ -35,10 +36,10 @@ router.post('/register' ,async (req, res) => {
     }
     const authToken = jwt.sign(data, JWT_SECRET)
 
-
     if (user) {
         res.status(201).json({
-            name: user.name,
+            firstName: user.firstName,
+            lastName:user.lastName,
             email: user.email,
             id:user.id,
             image,
@@ -73,7 +74,8 @@ router.post('/login', async (req, res) => {
         }
         const authToken = jwt.sign(data, JWT_SECRET)
         res.json({
-            name: user.name,
+            firstName: user.firstName,
+            lastName:user.lastName,
             email: user.email,
             id:user.id,
             image:user.image,

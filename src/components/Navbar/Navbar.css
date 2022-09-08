@@ -86,12 +86,12 @@ nav .search_box span::after {
   z-index: -1;
   transition: 0.3s;
 }
-nav .bar {
+nav #bar {
   position: relative;
   margin: auto;
   display: none;
 }
-nav .bar span {
+nav #bar span {
   position: absolute;
   color: #fff;
   font-size: 35px;
@@ -152,20 +152,20 @@ input[type="checkbox"] {
   nav ol li:nth-child(5) {
     transform: translateX(-350px);
   }
-  nav .bar {
+  nav #bar {
     display: block;
     position: absolute;
     top: 20px;
     right: 80px;
     cursor: pointer;
   }
-  nav .bar #times {
+  nav #bar #times {
     display: none;
   }
-  #check:checked ~ nav .bar #times {
+  #check:checked ~ nav #bar #times {
     display: block;
   }
-  #check:checked ~ nav .bar #bars {
+  #check:checked ~ nav #bar #bars {
     display: none;
   }
   #check:checked ~ nav ol {

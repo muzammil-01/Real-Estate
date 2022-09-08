@@ -1,11 +1,8 @@
-.backgroundImg {
-  /* The image used */
-  background-image: url("../../assets/backgroundImg.jpg");
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.labels{
+  color: lightgray;
+  float: left;
+  margin-bottom: -21px;   
+  margin-top:12px;
 }
 .property-form {
   width: 500px;

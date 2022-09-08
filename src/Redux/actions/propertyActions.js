@@ -112,8 +112,6 @@ export const listPropertyDetails = (id) => async (dispatch) => {
 
     const { data } = await axios.get(`http://localhost:3001/api/property/${id}`)
 
-    const data1 = 
-
     dispatch({
       type: PROPERTY_DETAILS_SUCCESS,
       payload: data

@@ -11,7 +11,7 @@ import {
 import axios from 'axios'
 
 // Add new User
-export const register = (name, email, password, image) => async (dispatch) => {
+export const register = (firstName,lastName, email, password, image) => async (dispatch) => {
   try {
     dispatch({
       type: USER_REGISTER_REQUEST
@@ -21,7 +21,7 @@ export const register = (name, email, password, image) => async (dispatch) => {
         'Content-Type': 'application/json'
       }
     }
-    const  {data}  = await axios.post('http://localhost:3001/api/auth/register', {name, email, password, image} ,
+    const  {data}  = await axios.post('http://localhost:3001/api/auth/register', {firstName,lastName, email, password, image} ,
      config)
     console.log(data)
 

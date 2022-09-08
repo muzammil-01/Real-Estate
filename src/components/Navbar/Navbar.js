@@ -37,24 +37,6 @@ const Navbar = () => {
       navigate('/search')
     }
   }
-  // const handleSearch = async (e) =>{
-  //   let key = e.target.value
-  //   if(key){
-
-  //     let result = await fetch(`http://localhost:3001/search/${key}`);
-  //     result = await result.json();
-  //     if(result){
-  //       setProduct(result)
-  //       console.log(product)
-  //     }
-  //     if(product.length === 0) {
-  //       console.log("no matches")
-  //     }
-  //   }
-  //   else{
-  //     console.log("no product found")
-  //   }
-  //   }
 
   return (
     <div>
@@ -85,7 +67,7 @@ const Navbar = () => {
           </li>
           <li>
             {userInfo ? <div className="dropdown">
-              <button className="dropbtn">{userInfo.name}   <FontAwesomeIcon icon={faCaretDown} className="caretDown"/></button>
+              <button className="dropbtn">{userInfo.firstName}   <FontAwesomeIcon icon={faCaretDown} className="caretDown"/></button>
               <div className="dropdown-content">
                 <Link to="/" onClick={logoutHandler}>Logout</Link>
                 <Link to="/profile">Profile</Link>
@@ -97,7 +79,7 @@ const Navbar = () => {
 
 
         </ol>
-        <label htmlFor="check" className="bar">
+        <label htmlFor="check" id="bar">
           <span className="fa fa-bars" id="bars" />
           <span className="fa fa-times" id="times" />
         </label>

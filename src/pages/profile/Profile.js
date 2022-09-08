@@ -63,7 +63,7 @@ function Profile() {
             <h1 className='headingOne'>Profile</h1>
             <div className='user-details'>
                 <div className="info">
-                    <h4>Name: {userInfo.name}</h4>
+                    <h4>Name: {userInfo.firstName + userInfo.lastName} </h4>
                     <h4>ID: {userInfo.id}</h4>
                     <h4>Email: {userInfo.email}</h4>
                 </div>

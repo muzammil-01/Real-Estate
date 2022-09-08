@@ -76,3 +76,47 @@ body {
   background-color: red;
   padding: 5px;
 }
+
+.decBtnNotActive {
+  border: 0.2px solid white;
+  outline: none;
+  color: rgb(255, 255, 255);
+  font-size: x-large;
+  border-radius: 20px;
+  background-color: rgb(244, 57, 57);
+  width: 50px;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+.decBtnActive {
+  border: 0.2px solid white;
+  outline: none;
+  color: rgb(255, 255, 255);
+  font-size: x-large;
+  border-radius: 20px;
+  background-color: rgb(244, 57, 57);
+  width: 50px;
+  cursor: not-allowed;
+}
+
+.incBtnNotActive {
+  border: 0.2px solid white;
+  outline: none;
+  color: rgb(255, 255, 255);
+  font-size: x-large;
+  border-radius: 20px;
+  background-color: rgb(82, 212, 77);
+  width: 50px;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+.incBtnActive {
+  border: 0.2px solid white;
+  outline: none;
+  color: rgb(255, 255, 255);
+  font-size: x-large;
+  border-radius: 20px;
+  background-color: rgb(82, 212, 77);
+  width: 50px;
+  cursor: not-allowed;
+}

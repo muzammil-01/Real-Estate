@@ -17,8 +17,9 @@ function Signup() {
   const { loading, error, userInfo } = userRegister
 
 
-  
-  const [name, setName] = useState('')
+
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [image, setImage] = useState([])
@@ -32,7 +33,7 @@ function Signup() {
       navigate("/")
     }
   }, [navigate, userInfo])
-  
+
 
 
 
@@ -84,7 +85,7 @@ function Signup() {
 
     }
     else {
-      dispatch(register(name, email, password, image))
+      dispatch(register(firstName,lastName, email, password, image))
     }
   }
   return (
@@ -101,9 +102,18 @@ function Signup() {
             type="text"
             className="inputs"
             name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter Your Name" />
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            placeholder="Enter First Name" />
+
+
+          <input
+            type="text"
+            className="inputs"
+            name="name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            placeholder="Enter Last Name" />
 
 
           <input
@@ -113,7 +123,7 @@ function Signup() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email Address" />
-            {error && <div className='error'>{error}</div>}
+          {error && <div className='error'>{error}</div>}
 
 
           <input
@@ -135,7 +145,7 @@ function Signup() {
             placeholder="Confirm Password"
             required minLength={5} />
 
-            {show && message && <div className='error'>{message}</div>}
+          {show && message && <div className='error'>{message}</div>}
 
           <input
             type='file'
