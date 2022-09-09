@@ -3,10 +3,10 @@ import ResellModal from '../../components/resellModal/ResellModal'
 import { Link } from 'react-router-dom'
 
 function TokensCards({ tokens }) {
-    console.log(tokens)
     const [resellModal, setResellModal] = useState(false)
     return (
         <>
+        
             <li className="cards_item">
                 <div className="card">
                     <div className="card_image">

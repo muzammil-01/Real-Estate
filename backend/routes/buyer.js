@@ -64,6 +64,18 @@ router.get("/userTokens", fetchuser, async(req,res)=>{
         res.status(500).send("Internal Server Error");
     }
 })
-    
+  
+router.patch("/update/:id", async (req, res) => {
+    const id = req.params.id
+    const listing = await Buyer.findOne({ _id: id });
+    var a = parseInt(listing.quantity)
+
+    if (a !== 0) {
+        req.body.quantity = a - parseInt(req.body.quantity)
+        const options = { new: true };
+        await Buyer.findByIdAndUpdate(id, { quantity: `${req.body.quantity}` }, options);
+        return res.json("successfully updated")
+    }
+})
 
 module.exports = router

@@ -7,7 +7,7 @@ margin: 0px 20px 0px 20px;
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, .7);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 5000;
   display: flex;
   justify-content: center;
@@ -16,14 +16,14 @@ margin: 0px 20px 0px 20px;
 
 .mintModalContainer {
   width: 500px;
-  height: 500px;
-  border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.427);
+  height: 430px;
+  border-radius: 10px;
+  background-color: lightgray;
   display: flex;
   flex-direction: column;
   padding: 25px;
-border: 2px solid white;
-  box-shadow: 1px 9px 18px 7px #7a9ccdf2;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  color: black;
 }
 
 .mintModalContainer .mintModaltitle {
@@ -63,7 +63,19 @@ border: 2px solid white;
   align-items: center;
 }
 
-#mintModalcalculateBtn {
+.mintModalcalculateBtn {
+  background-color: crimson;
+  color: white;
+  border-radius:30px ;
+  font-size: 20px;
+  cursor: pointer;
+  width: 150px;
+  height: 45px;
+  margin: 10px;
+  border: none;
+}
+.noevent{
+  pointer-events: none;
   background-color: crimson;
   color: white;
   border-radius:30px ;

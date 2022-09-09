@@ -10,7 +10,9 @@ function Banner() {
         <div className="text">
         <h1>Fractional And Frictionless RealEstate Investment</h1>
         <p>For the first time, investors around the globe can buy into the real estate market through fully-compliant, fractional, tokenized ownership. Powered by blockchain.</p>
-        <Link to="/login" className="btn">Get Started</Link>
+        <div className='getStarted'>
+        <Link to="/login" className="getStartedbtn">Get Started</Link>
+        </div>
         </div>
         <div className="pic">
           <img src={Pic} alt="" />

@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import './MintSuccess.css'
 import Successful from '../../assets/submit-successfully.png'
 
-function MintSuccess({count}) {
+function ListSuccess({count, propertyId}) {
     const navigate = useNavigate()
+
     const handleClick = ()=>{
-      navigate('/profile')
+      navigate(`/propertydetails/${propertyId}`)
     }
   return (
     <div className="success-container">
@@ -14,12 +15,12 @@ function MintSuccess({count}) {
       <div className="modalbox success ">
         <h1>Great!</h1>
         <img className="rukjao" src={Successful} alt="" />
-        <p>{count} Token Minted successfully</p>
+        <p>{count} Tokens listed successfully</p>
           <button className='countBtn' onClick={handleClick}>Continue</button>
       </div>
     </div>
   </div>
-    )
-  }
-  
-  export default MintSuccess
+  )
+}
+
+export default ListSuccess

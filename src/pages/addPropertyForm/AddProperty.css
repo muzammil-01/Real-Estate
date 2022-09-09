@@ -37,14 +37,4 @@
   text-decoration: none;
   font-size: 18px;
 }
-.logbtn {
-  padding: 5px 0px;
-  margin-top: 20px;
-  width: 50%;
-  cursor: pointer;
-  border: none;
-  background-color: #2eac68;
-  font-size: 20px;
-  border-radius: 2px;
-  color: #fff;
-}
+

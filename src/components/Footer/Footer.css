@@ -1,21 +1,18 @@
 .site-footer
 {
-  margin-top: 20px;
   background-color:#121228;
   padding:45px 20px;
   font-size:15px;
-  line-height:24px;
+  height: fit-content;
   color:#109272;
+  margin-bottom: -22px;
 }
 .site-footer hr
 {
   color:#109272;
   opacity:1
 }
-.site-footer > hr.small
-{
-  margin:20px 0
-}
+
 .site-footer p{
   color: white;
 }

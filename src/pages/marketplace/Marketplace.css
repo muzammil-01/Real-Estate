@@ -1,3 +1,8 @@
+.noData{
+  color: white;
+  text-align: center;
+  margin-top: 50px;
+}
 .market-card {
   color: white;
 }

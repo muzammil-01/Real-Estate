@@ -12,7 +12,8 @@ function TokensForSale() {
     <div>
       {loading && <Spinner />}
       <h2 className='financial-heading'>tokens for sale</h2>
-      {property && property.map((property) => (
+      {property && property.length === 1 && <h4 style={{color:"white", textAlign:"center"}}>NO TOKENS AVAILABLE </h4>}
+      {property && property.slice(1).map((property) => (
         <TokenList key={property._id} property={property}/>
       ))
       }

@@ -1,7 +1,6 @@
 import React , {useState} from 'react'
 import { Link } from 'react-router-dom'
 function Propertycard({ property }) {
-
     return (
         <div>
             <div className='market-card'>

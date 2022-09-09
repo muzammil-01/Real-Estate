@@ -70,10 +70,6 @@ function Details() {
             {property[0].propertyId.postalcode}
             </span>
           </h2>
-          <h2>
-            <h5>Type</h5>
-            <span className='gapleft'>undefined</span>
-          </h2>
           
     </div>
     </div>

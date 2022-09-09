@@ -1,10 +1,12 @@
 import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
+import Navbar from '../../components/Navbar/Navbar'
 
 
 function SearchCard({property}) {
   return (
     <>
+    <Navbar/>
          <div className='market-card'>
         <div className='content' >
             <div className='image'>
@@ -25,6 +27,12 @@ function SearchCard({property}) {
                             </span>
                             <br />
                             1400
+                            <br/>
+                            <span style={{ color: "#109272",  fontWeight:"bold",fontSize: "20px" }}>
+                                Country
+                            </span>
+                            <br />
+                            {property.country}
                         </p>
                     </div>
                     <div className="token-price">
@@ -40,23 +48,19 @@ function SearchCard({property}) {
                             </span>
                             <br />
                             500
+                            <br/>
+                            <span style={{ color: "#109272",  fontWeight:"bold", fontSize: "20px" }}>
+                               City
+                            </span>
+                            <br />
+                            {property.city}
                         </p>
                     </div>
-                    <div className="up">
-                        <div className="expected-income">
-                            <p>
-                                <span style={{ color: "#109272",  fontWeight:"bold", fontSize: "20px" }}>
-                                    RENT PER TOKEN
-                                </span>
+                 
+                    
+                </div>      <p>
+                                 <span style={{ color: "#109272",  fontWeight:"bold", fontSize: "20px" }}>Address:</span> {property.propertyAddress}
                             </p>
-                        </div>
-                        <div className="digits">
-                            <p>
-                                $ 5.28/YEAR
-                            </p>
-                        </div>
-                    </div>
-                </div>
                 <Link to={`/propertydetails/${property._id}`} className='view'>View Property</Link>
             </div>
         </div>

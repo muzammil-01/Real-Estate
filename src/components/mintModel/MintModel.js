@@ -11,7 +11,7 @@ import MintSuccess from '../MintSuccess/MintSuccess'
 function MintModel({ setOpenModal, property }) {
 
   const [count, setCount] = useState(0);
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(false)
   const navigate = useNavigate();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -134,7 +134,7 @@ function MintModel({ setOpenModal, property }) {
           </div>
           <div className="mintModalfooter">
             {parseInt(property[0].TotalSupplies) === 0 ? <p style={{fontSize:"large", backgroundColor:"crimson", borderRadius:"20px", padding:"10px", color:"white"}}>All tokens are minted</p>:
-            <button id="mintModalcalculateBtn" onClick={Mint}>
+            <button className={count === 0 ? "noevent":"mintModalcalculateBtn"} onClick={Mint}>
               Mint
             </button>
             }

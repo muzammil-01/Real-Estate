@@ -1,0 +1,11 @@
+.countBtn{
+    padding: 5px 0px;
+    margin-top: 20px;
+    width: 50%;
+    cursor: pointer;
+    border: none;
+    background-color: var(--btnColor);
+    font-size: 20px;
+    border-radius: 10px;
+    color: #fff;
+}

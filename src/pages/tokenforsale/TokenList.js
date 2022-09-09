@@ -12,7 +12,7 @@ export default function TokenList({property}) {
     <p key={property._id} className='tokensforsale'>
            <FontAwesomeIcon icon={faCircleUser} className="userIcon" />
            <span>
-             ID: {property._id}
+             ID: {property.propertyId.user}
            </span>
 
            <span>

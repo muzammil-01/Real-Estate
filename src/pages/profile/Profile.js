@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import "./Profile.css"
+import { useNavigate } from 'react-router-dom'
 import Spinner from '../../components/spinner/Spinner'
 import ListingCard from './ListingCard'
 import { useSelector } from 'react-redux'
@@ -13,7 +14,7 @@ import TokensCards from './TokensCards'
 
 function Profile() {
 
-
+    const navigate = useNavigate()
     const userSpecificProperties = useSelector(state => state.userSpecificProperties)
     const { loading, error, propertyData } = userSpecificProperties
 
@@ -21,6 +22,8 @@ function Profile() {
     const { userInfo } = userLogin
     const [userPropertyData, setUserPropertyData] = useState(null)
     const [userTokens, setUserTokens] = useState(null)
+    const [showTokensListing, setShowTokensListing] = useState(false)
+    const [showListing, setShowListing] = useState(false)
 
 
 
@@ -28,10 +31,18 @@ function Profile() {
     if (a) {
         var token = JSON.parse(a).authToken
     }
-
     useEffect(() => {
-        fetchUserProperties()
-        fetchUserTokens()
+        if (!userInfo) {
+          alert("please Login first");
+          navigate("/login");
+        }
+      }, []);
+       
+    useEffect(() => {
+     
+            fetchUserProperties()
+            fetchUserTokens()
+        
     }, [])
 
     const fetchUserTokens = async () => {
@@ -63,7 +74,10 @@ function Profile() {
             <h1 className='headingOne'>Profile</h1>
             <div className='user-details'>
                 <div className="info">
-                    <h4>Name: {userInfo.firstName + userInfo.lastName} </h4>
+                    <h1 className='displayName'> 
+                    <span className='first'>{userInfo.firstName}</span>
+                    <span className='last'> {userInfo.lastName} </span>
+                    </h1>
                     <h4>ID: {userInfo.id}</h4>
                     <h4>Email: {userInfo.email}</h4>
                 </div>
@@ -73,24 +87,27 @@ function Profile() {
             </div>
 
 
-
-            <h1 className="headingOne">Your Tokens</h1>
-            {userTokens && userTokens.length === 0 ? <p className='Notok'>No Tokens ..... </p> : ""}
+            <div className="btndiv">
+            <button className="profilelbtn" onClick={()=>{ setShowTokensListing(!showTokensListing)}}>View Tokens</button>
+            <button className="profilelbtn" onClick={()=>{ setShowListing(!showListing)}}>View Listed Properties</button>
+            </div>
+            {showTokensListing && userTokens && userTokens.length === 0 ? <p className='Notok'>No Tokens ..... </p> : ""}
             <div className="main">
                 <ul className="cards">
-                    {userTokens && userTokens.map((tokens) => (
+                    {showTokensListing && userTokens && userTokens.map((tokens) => (
                         <TokensCards key={tokens._id} tokens={tokens} />
-                    )
-                    )}
+                        )
+                        )}
                 </ul>
             </div>
+           
 
-            <h1 className='headingOne'>Your Listings</h1>
-            {userPropertyData && userPropertyData.length === 0 ? <p className='Notok'>No Listings ..... </p> : ""}
+            
+            {showListing && userPropertyData && userPropertyData.length === 0 ? <p className='Notok'>No Listings ..... </p> : ""}
             <div>
                 <div className="main">
                     <ul className="cards">
-                        {userPropertyData && userPropertyData.map((property) => (
+                        {showListing && userPropertyData && userPropertyData.map((property) => (
                             <ListingCard key={property._id} property={property} />
                         )
                         )}

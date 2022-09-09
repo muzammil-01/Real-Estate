@@ -17,10 +17,14 @@ const Marketplace = () => {
 
     const listAll = useSelector(state => state.listAll)
     const { loading, error, propertyData } = listAll
+    if(propertyData){
+
+        console.log()
+    }
     return (
         <>
-
             <Navbar />
+            {propertyData && propertyData.length === 0 && <h2 className='noData'>No Properties Listed</h2>}
             {loading && <Spinner />}
             {propertyData && propertyData.map((property) => (
                 <Propertycard key={property._id} property={property} />

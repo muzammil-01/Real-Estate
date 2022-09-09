@@ -2,11 +2,15 @@ import React, { useState } from 'react'
 import { ethers } from "ethers";
 import axios from 'axios'
 import "./ResellModal.css"
-import SuccessModal from '../../components/success modal/SuccessModal'
+import ListSuccess from '../listSuccess/ListSuccess';
 
 
 
 export default function ResellModal({ setResell, property }) {
+  if(property){
+    console.log()
+  }
+
   const [count, setCount] = useState(0);
   const [price, setPrice] = useState(0)
   const [successfull, setSuccessfull] = useState(false);
@@ -27,8 +31,6 @@ export default function ResellModal({ setResell, property }) {
       Pricepertoken: price, SellerWalletAddress: CurrentWalletAddress, numberOfSupplies: count, propertyId: property.propertyId._id
     }
 
-    console.log("test data", testData)
-
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -36,14 +38,25 @@ export default function ResellModal({ setResell, property }) {
       }
     }
     const {data} = await axios.post('http://localhost:3001/api/property/checkToken', testData, config)
-   
-    if(data) {
+
+
+    const updateMint = {
+      quantity: count
+    }
+    const newconfig = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    } 
+
+    const data1 = await axios.patch(`http://localhost:3001/api/update/${property._id}`,updateMint, newconfig )
+    if(data1.data) {
       setSuccessfull(true)
     }
   }
   return (
     <>
-    {successfull && <SuccessModal />}
+    {successfull ?  <ListSuccess count={count} propertyId={property.propertyId._id}/>:
     <div className="modalBackground">
       <div className="modalContainer">
         <div className="titleCloseBtn">
@@ -79,12 +92,13 @@ export default function ResellModal({ setResell, property }) {
           </p>
         </div>
         <div className="footer">
-          <button id="calculateBtn" onClick={ListTokens}>
+          <button  className={count === 0 ?"noevent":"calculateBtn"} onClick={ListTokens}>
             List
           </button>
         </div>
       </div>
     </div>
+  }
     </>
   )
 }

@@ -24,7 +24,6 @@ function AddProperty() {
 
   useEffect(() => {
     if (!userInfo) {
-      alert("please Login first");
       navigate("/login");
     }
   }, []);

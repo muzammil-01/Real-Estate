@@ -3,14 +3,18 @@ import './TokenModal.css'
 import { ethers } from "ethers";
 import { ERC1155ABI, ERC1155Address } from "../../Redux/constants/erc1155abi";
 import axios from 'axios'
+import SuccessPurchase from '../success purchase/SuccessPurchase';
+
 
 export default function TokenModal({setOpenModal, property}) {
-  console.log(property._id)
+
+ const [show, setShow] = useState(false)
+ const [count, setCount] = useState(0)
+
   var a = localStorage.getItem('userInfo')
 if(a){
   var token = JSON.parse(a).authToken
 }
-  const [selectTokens, setSelectTokens] = useState(0)
 
 
   const ListTokens = async () => {
@@ -27,7 +31,7 @@ if(a){
         ERC1155ABI,
         signer
       );
-      const transfer = await ERC1155.transfer(`${property.SellerWalletAddress}`, `${address}`, `${property.propertyId.TokenId}`, `${selectTokens}`, { gasLimit: 5000000 })
+      const transfer = await ERC1155.transfer(`${property.SellerWalletAddress}`, `${address}`, `${property.propertyId.TokenId}`, `${count}`, { gasLimit: 5000000 })
       console.log(transfer)
       ERC1155.on("Resell", (from, to, amount) => {
         console.log(from)
@@ -37,7 +41,7 @@ if(a){
 
       const buyerData = {
 
-        quantity: selectTokens, ListingTokensId: property._id, BuyerWalletAddress: address, propertyId:property.propertyId._id
+        quantity: count, ListingTokensId: property._id, BuyerWalletAddress: address, propertyId:property.propertyId._id
       }
       console.log(buyerData)
 
@@ -49,12 +53,15 @@ if(a){
         }
       }
       const { data } = await axios.post('http://localhost:3001/api/buyerData', buyerData, config)
+      if(data){
+        setShow(true)
+      }
 
 
 
       const updateListing = {
 
-        TotalSupplies: selectTokens
+        TotalSupplies: count
       }
       console.log(updateListing)
 
@@ -76,8 +83,10 @@ if(a){
 
 
   return (
-        <div className="modalBackground">
-          <div className="modalContainer" style={{color:"black"}}>
+    <>
+    {show ? <SuccessPurchase count={count}/>:
+    <div className="modalBackground">
+    <div className="modalContainer" style={{color:"black"}}>
             <div className="titleCloseBtn">
               <button
                 onClick={() => {
@@ -93,18 +102,32 @@ if(a){
             <div className="body">
             <p><b>TOKEN FOR SALE : {property.TotalSupplies} </b> </p>
             <p><b>PRICE OF ONE TOKEN: {property.PricePerToken} $ </b></p>
-            <p><b> Enter Tokens: <input type="number"  min={0} onChange={(e)=> setSelectTokens(e.target.value)} className="entertokens" max={property.TotalSupplies} required/>
-                </b></p>
+            <p>
+            
+            <button className={count !==0 ? 'decBtnActive': 'decBtnNotActive'} onClick={() => setCount(count - 1)} >
+              -
+            </button>
+            <span className="tokenValue"> <b> {count} </b></span>
+
+            <button
+              className={count !== parseInt(property.quantity) ? 'incBtnActive':'incBtnNotActive' }
+              onClick={() => setCount(count + 1)}
+            >
+              +
+            </button>
+          </p>
             </div>
             <div className="footer">
               <button onClick={ListTokens}
-               id="calculateBtn"
+               className={count === 0 ? "noevent":"calculateBtn"}
               >
                 Buy Tokens
               </button>
             </div>
           </div>
         </div>
+      }
+                </>
     
   )
 }

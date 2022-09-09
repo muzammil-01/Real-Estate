@@ -1,10 +1,12 @@
-
 .about h1{
     color: var(--btnColor);
     text-align: center;
     font-weight: 900;
     margin-bottom: 30px;
     font-family:'Merriweather', serif;
+}
+.about h2{
+    color: var(--btnColor);
 }
 .carded{
     display: grid;

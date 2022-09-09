@@ -18,7 +18,7 @@ function Home() {
   }, [])
   return (
     <>
-    <div>
+    <div className='maindiv'>
       {loading ? 
       <Spinner/>
       :

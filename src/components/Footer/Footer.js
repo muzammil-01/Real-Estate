@@ -4,13 +4,16 @@ import './Footer.css'
 const Footer = () => {
   return (
     <>
-
+    <div className="clear"></div>
 <footer className="site-footer">
   <div className="container">
     <div className="row">
       <div className="col-sm-12 col-md-6">
         <h5>Welcome To FypLand</h5>
-        <p className="text-justify"><i>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt ea corporis autem laboriosam! Explicabo aliquid quibusdam quia, similique voluptates laborum repudiandae alias cumque delectus ullam earum minus at sint dolorem.</i></p>
+        <p className="text-justify"><i>
+        Fractional And Frictionless RealEstate Investment
+        For the first time, investors around the globe can buy into the real estate market through fully-compliant, fractional, tokenized ownership. Powered by blockchain.
+          </i></p>
       </div>
       <div className="col-xs-6 col-md-3">
         <h5>TEXT</h5>

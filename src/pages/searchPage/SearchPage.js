@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import Spinner from '../../components/spinner/Spinner'
 import SearchCard from './SearchCard'
 import "./Search.css"
-import NoMatch from '../../assets/no match.jpg'
 
 
 function SearchPage() {

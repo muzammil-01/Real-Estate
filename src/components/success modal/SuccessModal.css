@@ -8,7 +8,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
   display: flex;
   justify-content: center;
@@ -18,24 +18,19 @@
 box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 -webkit-border-radius: 2px;
-border-radius: 2px;
-background: #fff;
+border-radius: 20px;
+background: lightgray;
 padding: 25px 25px 15px;
 text-align: center;
 width: 400px;
-}
-.modalbox.success.animate .icon {
--webkit-animation: fall-in 0.75s;
--moz-animation: fall-in 0.75s;
--o-animation: fall-in 0.75s;
-animation: fall-in 0.75s;
-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+color: black;
 }
 .modalbox.success h1 {
 font-family: 'Montserrat', sans-serif;
 }
 .modalbox.success p {
 font-family: 'Open Sans', sans-serif;
+font-weight: bolder;
 }
 .modalbox.success .icon {
 position: relative;
@@ -57,7 +52,6 @@ padding-top: 20px;
 float: none;
 margin-left: auto;
 margin-right: auto;
-/* stupid browser compat. smh */
 }
 .center .change {
 clear: both;
